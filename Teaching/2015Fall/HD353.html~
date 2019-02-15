@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Haizhao Yang</title>
+
+<!-- SET: FAVICON -->
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+<!-- END: FAVICON -->
+
+<!-- SET: STYLESHEET -->
+<link href="../../css/style2.css" rel="stylesheet" type="text/css" media="all">
+<!-- END: STYLESHEET -->
+
+<!-- SET: SCRIPTS -->
+	<script type="text/javascript"></script>
+<!-- END: SCRIPTS -->
+</head>
+
+<body>
+
+<!-- wrapper starts -->
+<div class="wrapper">
+	
+    
+        	
+            <!-- Header Starts -->
+            <div id="header">
+            	<div class="header">
+                	<div id="logo">
+                    	<a href="#"> MATH 353 (ODE and PDE) </a>
+                    </div>
+                    <div id="nav">
+                    	<ul>
+                        	<li> <a href="Math353.html"> Home </a> </li>
+                            <li> <a href="SL353.pdf"> Syllabus  </a> </li>
+                            <li> <a href="HW353.html"> Homework </a> </li>
+                            <li> <a href="HD353.html"> Handouts </a> </li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                    
+                </div>                	
+            </div>	
+            <!-- Header ends -->
+            
+            <!-- banner Starts -->
+            	<div class="banner-outer">
+                	<div class="banner"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+                    </div>
+                </div>
+            <!-- banner ends -->
+            <!-- maincontent Starts -->
+            <div class="maincontent">
+
+
+                <!-- container starts -->
+                <div class="container">
+                	<div class="details">
+<ul>
+<li>
+			<h2 id="737975336447591785" class="element editable-text">
+			
+                                    <p><font color="#808080">
+                                    <a href="doc/ExamPart1.zip"> 
+                                    <span style="text-decoration: none"> 
+                                    <font color="#808080">ExamPart1.zip
+                                    </font></span></a></font>
+                                    , example exams for the first midterm.</font><br><br>
+
+<p>  The first midterm covers the following sections in the textbook:  <br></p>
+<p> 2.1-2.3, 2.5-2.6, 2.8, 3.1-3.6, 5.1-5.3, 6.1-6.2 <br></p>
+
+
+	<h2 id="737975336447591785" class="element editable-text">
+			
+                                    <p><font color="#808080">
+                                    <a href="doc/ReviewNotePart1.zip"> 
+                                    <span style="text-decoration: none"> 
+                                    <font color="#808080">ReviewNotePart1.zip
+                                    </font></span></a></font>
+                                    , the note in my review session for the first midterm.</font><br><br>
+
+ <p><font color="#808080">
+                                    <a href="doc/MidTerm1Sol.zip"> 
+                                    <span style="text-decoration: none"> 
+                                    <font color="#808080">MidTerm1Sol.zip
+                                    </font></span></a></font>
+                                    , solution of the first midterm exam.</font><br><br>
+<p><font color="#808080">
+	<h2 id="737975336447591785" class="element editable-text">
+			
+                                    <p><font color="#808080">
+                                    <a href="doc/ExamPart2.zip"> 
+                                    <span style="text-decoration: none"> 
+                                    <font color="#808080">ExamPart2.zip
+                                    </font></span></a></font>
+                                    , example exams for the second midterm.</font><br><br>
+
+<p>  The second midterm covers the following sections in the textbook:  <br></p>
+<p> 10.2-10.8, 11.1-11.3, and some part of NOTEII taught in class. <br></p>
+
+<p><font color="#808080">
+                                    <a href="doc/20151111.zip"> 
+                                    <span style="text-decoration: none"> 
+                                    <font color="#808080">20151111.zip
+                                    </font></span></a></font>
+  , note for the class on 2015/11/09 and 2015/11/11.</font><br><br>
+ <p><font color="#808080">
+                                    <a href="doc/MidTerm2Sol.zip"> 
+                                    <span style="text-decoration: none"> 
+                                    <font color="#808080">MidTerm2Sol.zip
+                                    </font></span></a></font>
+                                    , solution of the second midterm exam.</font><br><br>
+</li>
+</ul>
+                </div>
+                <!-- container ends -->
+            </div>
+            </div>
+            <!-- maincontent ends -->
+<br>
+<br>
+            
+    
+    
+</div>
+<!-- wrapper ends -->
+
+</body>
+</html>
