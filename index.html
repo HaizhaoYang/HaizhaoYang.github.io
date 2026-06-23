@@ -22,18 +22,14 @@ http://www.tooplate.com/view/2085-neuron
 
 <!-- Main css -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/research.css">
 <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
 
-<!-- PRE LOADER -->
-
-<div class="preloader">
-     <div class="sk-spinner sk-spinner-wordpress">
-          <span class="sk-inner-circle"></span>
-     </div>
-</div>
+<!-- PRE LOADER removed -->
 
 <!-- Navigation section  -->
 
@@ -67,18 +63,104 @@ http://www.tooplate.com/view/2085-neuron
 
 <section id="home" class="main-home parallax-section">
      <div class="overlay"></div>
-     <div id="particles-js"></div>
+     <!-- <div id="particles-js"></div> -->
      <div class="container">
           <div class="row">
 
                <div class="col-md-12 col-sm-12">
                     <h1>Hello! This is Haizhao Yang.</h1>
-                    <a href="https://sites.google.com/prod/view/haizhaoyang/home" class="smoothScroll btn btn-default">Discover More</a>
+                    <!-- <a href="https://sites.google.com/prod/view/haizhaoyang/home" class="smoothScroll btn btn-default">Discover More</a> -->
                </div>
 
           </div>
      </div>
 </section>
+
+<!-- Research Section -->
+<section id="research" class="research-section">
+  <div class="research-container">
+    <div class="research-section-header">
+      <h2 class="research-section-title">Recent Works</h2>
+      <p class="research-section-subtitle">Mathematical foundations of deep learning, symbolic and interpretable ML, agentic AI for computational science, and scientific foundation models</p>
+    </div>
+
+    <div class="research-list">
+
+      <article class="research-item">
+        <div class="research-item-image">
+          <img src="images/research/agon-overview.png" alt="Agon system overview">
+        </div>
+        <div class="research-item-content">
+          <span class="research-tag">Agentic AI</span>
+          <h3 class="research-item-title"><a href="research/autoresearch.html">Agon: An Autonomous Large-Scale Omnidisciplinary Research System Built on Prompt Economy</a></h3>
+          <p class="research-authors">Youran Sun, Xingyu Ren, Chugang Yi, Jiaxuan Guo, Kejia Zhang, Jianda Du, Haizhao Yang</p>
+          <p class="research-summary">The world has entered the age of agents, yet prompt engineering is still the Wild West, with no shared rules of thumb. We distill six design principles for autonomous research, anchored by <strong>Prompt Economy</strong>: stop writing prompts for single tasks, and start building reusable producer and critic loops. On this foundation we built <strong>Agon</strong>, an omnidisciplinary AI Scientist whose deployments reveal striking behaviors, including genuine <strong>agent emergence</strong>, and we map the recurring <strong>failure modes</strong> into a taxonomy of where machines can self-correct and where humans remain irreplaceable. Our dream: <strong>human navigates, AI drives</strong>.</p>
+          <div class="research-links">
+            <a href="https://www.researchgate.net/publication/407294831_Agon_An_Autonomous_Large-Scale_Omnidisciplinary_Research_System_Built_on_Prompt_Economy" class="research-link">PDF</a>
+            <a href="https://github.com/AutoResearch-Factory/Agon" class="research-link">Code</a>
+          </div>
+          <i class="research-read-more">&rarr;</i>
+        </div>
+      </article>
+
+      <article class="research-item">
+        <div class="research-item-image">
+          <img src="images/research/survey-axes.png" alt="Seven-axis coordinate system">
+        </div>
+        <div class="research-item-content">
+          <span class="research-tag">Survey</span>
+          <h3 class="research-item-title"><a href="research/autoresearch-survey.html">What's Missing in Autonomous Research? A Systematization of Systems, Benchmarks, and Verification</a></h3>
+          <p class="research-authors">Xingyu Ren, Youran Sun, Chugang Yi, Kejia Zhang, Jiaxuan Guo, Jianda Du, Haizhao Yang</p>
+          <p class="research-summary">A systematization of 56 autonomous research systems along seven axes, exposing a gap between what systems produce and what they can defend: most can generate research artifacts, yet few can block a weak result before release.</p>
+          <div class="research-links">
+            <a href="https://www.researchgate.net/publication/406952713_What's_Missing_in_Autonomous_Research_A_Systematization_of_SystemsBenchmarks_and_Verification" class="research-link">PDF</a>
+          </div>
+          <i class="research-read-more">&rarr;</i>
+        </div>
+      </article>
+
+      <article class="research-item">
+        <div class="research-item-image">
+          <div class="img-placeholder img-placeholder-3"></div>
+        </div>
+        <div class="research-item-content">
+          <span class="research-tag">Harmonic Analysis</span>
+          <h3 class="research-item-title"><a href="research/sample-fex.html">Synchrosqueezed Wave Packet Transforms</a></h3>
+          <p class="research-authors">H. Yang, L. Ying</p>
+          <p class="research-summary">A family of high-resolution time-frequency analysis methods for decomposing multi-component non-stationary signals into well-separated modes with precise instantaneous frequency estimation.</p>
+          <div class="research-links">
+            <a href="publications/SSWavePacket1D.pdf" class="research-link">PDF</a>
+            <a href="#" class="research-link">arXiv</a>
+            <a href="https://github.com/HaizhaoYang/SynLab" class="research-link">Code</a>
+          </div>
+          <i class="research-read-more">&rarr;</i>
+        </div>
+      </article>
+
+      <article class="research-item">
+        <div class="research-item-image">
+          <div class="img-placeholder img-placeholder-4"></div>
+        </div>
+        <div class="research-item-content">
+          <span class="research-tag">AI for Science</span>
+          <h3 class="research-item-title"><a href="research/sample-fex.html">Int-Deep: A Deep Learning Framework for Solving PDEs</a></h3>
+          <p class="research-authors">J. Chen, R. Du, K. Wu, H. Yang</p>
+          <p class="research-summary">An integration-based deep learning framework for solving high-dimensional partial differential equations, leveraging integral formulations to achieve robust training and superior accuracy over existing neural PDE solvers.</p>
+          <div class="research-links">
+            <a href="publications/Int-Deep.pdf" class="research-link">PDF</a>
+            <a href="#" class="research-link">arXiv</a>
+          </div>
+          <i class="research-read-more">&rarr;</i>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>Haizhao Yang &middot; Department of Mathematics &middot; University of Maryland</p>
+</footer>
 
 <!-- Back top -->
 <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
@@ -92,6 +174,20 @@ http://www.tooplate.com/view/2085-neuron
 <script src="js/jquery.parallax.js"></script>
 <script src="js/smoothscroll.js"></script>
 <script src="js/custom.js"></script>
+<script>
+(function() {
+  var navbar = document.querySelector('.navbar-default');
+  var hero = document.getElementById('home');
+  if (!navbar || !hero) return;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > hero.offsetHeight * 0.8) {
+      navbar.classList.add('navbar-visible');
+    } else {
+      navbar.classList.remove('navbar-visible');
+    }
+  });
+})();
+</script>
 
 </body>
 </html>

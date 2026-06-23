@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Agon: An Autonomous Large-Scale Omnidisciplinary Research System | Haizhao Yang</title>
+<link rel="stylesheet" href="../css/research.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  .detail-hero-image img {
+    height: auto;
+    object-fit: contain;
+    background: #ffffff;
+    display: block;
+  }
+  .detail-body .figure-item {
+    margin: 2rem 0;
+    background: var(--rs-bg-card);
+    border: 1px solid var(--rs-border);
+    border-radius: 8px;
+    padding: 1rem 1rem 0;
+  }
+  .detail-body .figure-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 4px;
+    background: #ffffff;
+  }
+</style>
+</head>
+<body class="detail-page">
+
+<nav class="detail-nav">
+  <a href="../index.html" class="detail-back">Back to Home</a>
+</nav>
+
+<header class="detail-header">
+  <div class="detail-meta">
+    <span class="research-tag">Agentic AI</span>
+    <span class="detail-year">2026</span>
+  </div>
+  <h1>Agon: An Autonomous Large-Scale Omnidisciplinary Research System Built on Prompt Economy</h1>
+  <p class="detail-authors">Youran Sun, Xingyu Ren, Chugang Yi, Jiaxuan Guo, Kejia Zhang, Jianda Du, Haizhao Yang</p>
+  <div class="detail-links">
+    <a href="https://www.researchgate.net/publication/407294831_Agon_An_Autonomous_Large-Scale_Omnidisciplinary_Research_System_Built_on_Prompt_Economy" class="detail-link">PDF</a>
+    <a href="https://github.com/AutoResearch-Factory/Agon" class="detail-link">Code</a>
+  </div>
+</header>
+
+<div class="detail-hero-image">
+  <img src="../images/research/agon-overview.png" alt="Agon system overview">
+</div>
+
+<div class="detail-body">
+  <h2>Overview</h2>
+  <p>The world has entered the age of agents. But the way we write agent prompts is still untamed: long, brittle, and improvised, with no shared rules of thumb. Agon starts from a simple question. What would research look like if prompting were treated as an engineering discipline instead of an art?</p>
+  <p>Our answer is <strong>Agon</strong>, a massively parallel, omnidisciplinary, zero-code research system that runs scientist, coder, and auditor loops across more than ten domains, with no human writing a single line of experimental code. Built on six design principles, it delivers a full AI Scientist with a fraction of the prompt surface of comparable systems, and the same engine transfers across scientific fields with nothing changed but the input files. Its deployments also surface genuinely surprising behaviors, including <strong>agent emergence</strong>, where the orchestrated agents discover capabilities and research directions that no human prescribed. Our dream is simple: <strong>human navigates, AI drives</strong>.</p>
+
+  <h2>The Six Design Principles</h2>
+  <p>Agon is built on six principles for autonomous research. The cornerstone is <strong>Prompt Economy</strong>, and the rest follow from it.</p>
+  <ul>
+    <li><strong>Prompt Economy.</strong> Never design a prompt for a single task. Organize the whole system around reusable producer and critic loops that maximize the return on every piece of prompt engineering.</li>
+    <li><strong>Future-Facing.</strong> Keep model-specific details out of the prompts, so that stronger future models improve the system directly instead of forcing a rewrite.</li>
+    <li><strong>Minimal Prompts.</strong> Keep the core agent set small and every prompt short, so the system stays easy to inspect and maintain.</li>
+    <li><strong>OmniDisciplinary.</strong> Keep the core agents domain agnostic, so the same factory transfers across scientific fields without a new architecture.</li>
+    <li><strong>Massive Parallelism.</strong> Advance many topics, ideas, proposals, and experiments at the same time, turning reusable loops into throughput.</li>
+    <li><strong>Zero-Code.</strong> Prompt, not code. Orchestrate the entire workflow with prompt dispatchers rather than brittle control code.</li>
+  </ul>
+  <p>These principles reinforce each other. Prompt Economy makes a compact set of reusable roles valuable, Minimal Prompts and Future-Facing keep that prompt surface small and durable, OmniDisciplinary and Massive Parallelism define the scope, and Zero-Code handles the dispatch that scale demands.</p>
+
+  <h2>Key Results</h2>
+  <p>Prompt Economy is not just a slogan. It shows up in the numbers. With only <strong>18 roles</strong> and the leanest prompt surface of any system in its class, Agon does more with a fraction of the prompt code, while its competitors balloon to dozens of roles and megabytes of brittle instructions.</p>
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>System</th>
+        <th>Roles</th>
+        <th>Prompt KiB</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AI Scientist v2</td>
+        <td>~110</td>
+        <td>302.4</td>
+      </tr>
+      <tr>
+        <td>ARIS</td>
+        <td>79</td>
+        <td>1157.4</td>
+      </tr>
+      <tr>
+        <td>AutoResearchClaw</td>
+        <td>78</td>
+        <td>1297.5</td>
+      </tr>
+      <tr>
+        <td>Agon</td>
+        <td>18</td>
+        <td>230.6</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Method</h2>
+  <p>Agon runs as a chain of <strong>factories</strong>: idea, proposal, experiment, and paper. Together they carry a research project from a one line topic all the way to a finished manuscript. Each factory is a producer and critic loop. One agent creates, an independent critic on a fresh context tries to break it, and nothing advances until it survives. A deep literature engine reads the field so that ideas do not collide with prior work, and the entire pipeline is orchestrated by prompts rather than workflow code. That is why the same system drops into a new discipline simply by swapping the inputs.</p>
+
+  <h2>Failure Mode Taxonomy</h2>
+  <p>The flip side of automation is knowing its limits. Agon's deployments expose a whole zoo of <strong>failure modes</strong>, which we organize into a four axis taxonomy along severity, fixability, visibility, and capability locus (Perception, Reasoning, Execution, Motivation). The taxonomy draws a sharp line. On one side are the failures the adversarial loops can catch and repair on their own. On the other are the "invisible" ones, such as anomaly blindness, plausible false attribution, and premature abandonment, that no agent can see and only a human scientist can catch. This is the boundary where <strong>human navigates, AI drives</strong>.</p>
+
+  <div class="figure-item">
+    <img src="../images/research/agon-figure2.png" alt="Agon failure-mode taxonomy">
+    <p class="figure-caption">The failure mode taxonomy. Every observed failure is mapped along severity, fix path, visibility, and capability locus, separating what the loops can fix from what only a human can catch.</p>
+  </div>
+
+  <h2>Citation</h2>
+  <div class="citation-block">@article{sun2026agon,
+  title={Agon: An Autonomous Large-Scale Omnidisciplinary Research System Built on Prompt Economy},
+  author={Sun, Youran and Ren, Xingyu and Yi, Chugang and Guo, Jiaxuan and Zhang, Kejia and Du, Jianda and Yang, Haizhao},
+  year={2026},
+  month={June},
+  url={https://www.researchgate.net/publication/407294831}
+}</div>
+</div>
+
+<footer class="detail-footer">
+  <p>Haizhao Yang &middot; Department of Mathematics &middot; University of Maryland</p>
+</footer>
+</body>
+</html>

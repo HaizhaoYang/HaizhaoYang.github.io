@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>What's Missing in Autonomous Research? — Haizhao Yang</title>
+<link rel="stylesheet" href="../css/research.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  .detail-body .figure-item {
+    margin: 2rem 0;
+    background: var(--rs-bg-card);
+    border: 1px solid var(--rs-border);
+    border-radius: 8px;
+    padding: 1rem 1rem 0;
+  }
+  .detail-body .figure-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .detail-body h3.subhead {
+    font-family: var(--rs-font-display);
+    color: var(--rs-text);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+  }
+
+  /* Full 56-system coding matrix: break out of the narrow body column */
+  .system-matrix-section {
+    max-width: 1180px;
+    margin: 3rem auto 0;
+    padding: 0 2rem;
+  }
+  .system-matrix-section h2 {
+    font-family: var(--rs-font-display);
+    color: var(--rs-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+  }
+  .system-matrix-section .matrix-intro {
+    color: var(--rs-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin: 0 0 1.5rem;
+    max-width: 760px;
+  }
+  .system-matrix-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--rs-border);
+    border-radius: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  table.system-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    min-width: 1080px;
+  }
+  table.system-matrix thead th {
+    background: var(--rs-bg-card);
+    color: var(--rs-text);
+    font-weight: 600;
+    text-align: left;
+    padding: 0.55rem 0.5rem;
+    border-bottom: 2px solid var(--rs-border);
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+  table.system-matrix tbody td {
+    padding: 0.5rem 0.5rem;
+    border-bottom: 1px solid var(--rs-border);
+    color: var(--rs-text-secondary);
+    vertical-align: top;
+  }
+  table.system-matrix tbody tr:hover {
+    background: var(--rs-bg-card);
+  }
+  table.system-matrix td.sys-name {
+    color: var(--rs-text);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  table.system-matrix td.axis-cell {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    color: var(--rs-text);
+  }
+  table.system-matrix td.r-cell {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: var(--rs-accent-hover);
+  }
+  table.system-matrix td.key-note {
+    min-width: 240px;
+    color: var(--rs-text-muted);
+  }
+  .matrix-legend {
+    margin: 1.25rem 0 0;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: var(--rs-text-muted);
+    max-width: 1100px;
+  }
+  .matrix-legend strong { color: var(--rs-text-secondary); }
+  @media (max-width: 768px) {
+    .system-matrix-section { padding: 0 1rem; }
+  }
+</style>
+</head>
+<body class="detail-page">
+
+<nav class="detail-nav">
+  <a href="../index.html" class="detail-back">Back to Home</a>
+</nav>
+
+<header class="detail-header">
+  <div class="detail-meta">
+    <span class="research-tag">Survey</span>
+    <span class="detail-year">2026</span>
+  </div>
+  <h1>What's Missing in Autonomous Research? A Systematization of Systems, Benchmarks, and Verification</h1>
+  <p class="detail-authors">Xingyu Ren, Youran Sun, Chugang Yi, Kejia Zhang, Jiaxuan Guo, Jianda Du, Haizhao Yang</p>
+  <div class="detail-links">
+    <a href="https://www.researchgate.net/publication/406952713_What's_Missing_in_Autonomous_Research_A_Systematization_of_SystemsBenchmarks_and_Verification" class="detail-link">PDF</a>
+  </div>
+</header>
+
+<div class="detail-hero-image">
+  <img src="../images/research/survey-axes.png" alt="Seven-axis coordinate system for autonomous research">
+</div>
+
+<div class="detail-body">
+  <h2>Overview</h2>
+  <p>In barely two years, autonomous research has jumped from isolated research assistants to systems that automate large stretches of the scientific workflow &mdash; drafting papers, searching over candidates, running code, and connecting to wet-lab and simulator readouts. But the same systems are described as AI scientists, research agents, deep-research agents, or agentic-science platforms, report wildly different kinds of evidence, and are scored on benchmarks that rarely line up. The field has outgrown its own map.</p>
+  <p>This survey draws that map. It systematizes public work on autonomous research through <strong>June 2026</strong>, and its organizing move is a single distinction the field usually treats as a footnote: it separates what a system can <strong>produce</strong> from what it can <strong>defend</strong>. Read along that axis, most systems can generate a research artifact &mdash; yet almost none can block a weak result before release. The survey makes that <strong>missing release architecture</strong> explicit, system by system.</p>
+
+  <div class="figure-item">
+    <img src="../images/research/survey-timeline.png" alt="Timeline of autonomous-research systems and evaluation signals">
+    <p class="figure-caption">Timeline of autonomous-research systems and evaluation signals. The upper track summarizes system and domain milestones; the lower track summarizes benchmarks, audits, and review studies that motivate evaluation and verification.</p>
+  </div>
+
+  <h2>Key Contributions</h2>
+  <p>The survey is built in two halves that answer two different questions. <strong>Part one</strong> maps the <em>systems</em> &mdash; what each one builds and how far it can defend it. <strong>Part two</strong> maps the <em>evaluation and verification</em> machinery around them &mdash; what benchmarks can make visible and what verifiers can actually block.</p>
+  <p>For part one, the survey hand-codes <strong>56 autonomous-research systems</strong> along <strong>seven axes</strong>, each prying apart a capability that end-to-end "AI Scientist" claims tend to fuse into one:</p>
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Axis</th>
+        <th>What it records</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Loop topology (L)</td><td>Whether feedback is absent, single-loop, or multi-loop</td></tr>
+      <tr><td>Verifier gate scope (G)</td><td>What a verifier can actually block in practice</td></tr>
+      <tr><td>Orchestration mode (O)</td><td>Who advances the workflow: human, script, or agent</td></tr>
+      <tr><td>Portfolio parallelism (P)</td><td>One project, in-project branches, or multiple live projects</td></tr>
+      <tr><td>Artifact substrate (A)</td><td>Context, loose files, or protocolized records</td></tr>
+      <tr><td>Disciplinary coverage (DC)</td><td>Claimed scope vs. publicly demonstrated evidence</td></tr>
+      <tr><td>Lifecycle coverage (LC)</td><td>How far a thread reaches, from support module to publication cycle</td></tr>
+    </tbody>
+  </table>
+  <p>Every system also carries an <strong>Evidence Reliability Grade</strong> (R1&ndash;R5) that records the strength of <em>public</em> evidence rather than capability &mdash; an infrastructure component with strong artifacts can outrank a flashy end-to-end system whose claims are thinly substantiated.</p>
+  <p>Read together, the axes draw a sharp line. Production has scaled; <strong>defensibility has not</strong>. No reviewed public system reaches a full-manuscript release gate (<strong>G-paper-full</strong>), agent-dispatcher orchestration (<strong>O2</strong>), a multi-project portfolio (<strong>P2</strong>), or cross-disciplinary validation in the DC-Evidence column &mdash; and only <strong>four</strong> gate even selected paper-level claims. The result is a field map that locates each system by both what it builds and what it can stand behind.</p>
+</div>
+
+<section class="system-matrix-section">
+  <h2>Part One &mdash; The System Coding Matrix &middot; All 56 Systems</h2>
+  <p class="matrix-intro">This is the core of the survey: every reviewed autonomous-research system, hand-coded on all seven axes plus its Evidence Reliability Grade (R) from public evidence only. Where a paper claimed a capability without inspectable mechanism, artifact, or trace evidence, the lower label was assigned and the claim&ndash;evidence gap recorded. Sorted by first public date.</p>
+  <div class="system-matrix-scroll">
+    <table class="system-matrix">
+      <thead>
+        <tr>
+          <th>System</th>
+          <th>Date</th>
+          <th>L</th>
+          <th>G</th>
+          <th>O</th>
+          <th>P</th>
+          <th>A</th>
+          <th>DC-Claim</th>
+          <th>DC-Evidence</th>
+          <th>LC</th>
+          <th>R&uarr;</th>
+          <th>Key note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="sys-name">AI Scientist v1</td><td class="axis-cell">24.08</td><td class="axis-cell">L1</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC3</td><td class="r-cell">R4</td><td class="key-note">Paper pipeline with soft LLM review; no release-blocking claim gate.</td></tr>
+        <tr><td class="sys-name">PaperQA2</td><td class="axis-cell">24.09</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R4</td><td class="key-note">Literature QA and citation grounding module.</td></tr>
+        <tr><td class="sys-name">CycleResearcher</td><td class="axis-cell">24.11</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC1</td><td class="r-cell">R3</td><td class="key-note">Paper-shaped review loop has disclosed fabricated experiments, so it is treated as textual/proposal-stage coverage rather than LC3 evidence.</td></tr>
+        <tr><td class="sys-name">OpenScholar</td><td class="axis-cell">24.11</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R5</td><td class="key-note">Citation-grounded literature infrastructure, not end-to-end research.</td></tr>
+        <tr><td class="sys-name">Agent Laboratory</td><td class="axis-cell">25.01</td><td class="axis-cell">L1</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A1</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC3</td><td class="r-cell">R3</td><td class="key-note">Three-phase workflow with human checkpoints and judge/human score gap.</td></tr>
+        <tr><td class="sys-name">AIDE</td><td class="axis-cell">25.02</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">LC2</td><td class="r-cell">R4</td><td class="key-note">ML competition agent with external scorer.</td></tr>
+        <tr><td class="sys-name">MLGym</td><td class="axis-cell">25.02</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">LC0</td><td class="r-cell">R4</td><td class="key-note">Research-agent framework and benchmark; independent reruns do not show branch control.</td></tr>
+        <tr><td class="sys-name">Tree-of-Debate</td><td class="axis-cell">25.02</td><td class="axis-cell">L1</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R3</td><td class="key-note">Retrieval-backed debate for paper comparison, not new evidence production.</td></tr>
+        <tr><td class="sys-name">Co-Scientist</td><td class="axis-cell">25.02</td><td class="axis-cell">L2</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-biomed</td><td class="axis-cell">LC1</td><td class="r-cell">R4</td><td class="key-note">Hypothesis loop proposes and ranks candidates by Elo without an enforceable task gate; selected wet-lab checks are external validation, not autonomous evidence production.</td></tr>
+        <tr><td class="sys-name">AgentRxiv</td><td class="axis-cell">25.03</td><td class="axis-cell">L1</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC3</td><td class="r-cell">R3</td><td class="key-note">Collaborative autonomous-research target with a searchable preprint substrate and limited public gate evidence.</td></tr>
+        <tr><td class="sys-name">AI Scientist v2</td><td class="axis-cell">25.04</td><td class="axis-cell">L2</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC3</td><td class="r-cell">R4</td><td class="key-note">Tree search and visual critique add feedback; publication signal is reported, while release review remains soft.</td></tr>
+        <tr><td class="sys-name">Robin</td><td class="axis-cell">25.05</td><td class="axis-cell">L1</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC1-biomed</td><td class="axis-cell">DC1-biomed</td><td class="axis-cell">LC2</td><td class="r-cell">R4</td><td class="key-note">RNA-seq and assay evidence support a candidate, not an autonomous full paper.</td></tr>
+        <tr><td class="sys-name">R&amp;D-Agent</td><td class="axis-cell">25.05</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-ML/DS</td><td class="axis-cell">DC1-ML/DS</td><td class="axis-cell">LC2</td><td class="r-cell">R4</td><td class="key-note">Industrial data-science loop with an exploration graph and MLE-Bench-style scoring.</td></tr>
+        <tr><td class="sys-name">NovelSeek</td><td class="axis-cell">25.05</td><td class="axis-cell">L1</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC3</td><td class="axis-cell">DC2</td><td class="axis-cell">LC2</td><td class="r-cell">R3</td><td class="key-note">Idea-branch evolution and hypothesis-to-verification utilities with multi-domain computational readouts.</td></tr>
+        <tr><td class="sys-name">AI-Researcher</td><td class="axis-cell">25.05</td><td class="axis-cell">L1</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC3</td><td class="r-cell">R3</td><td class="key-note">Literature, math-to-code, and paper workflow; judge artifacts remain a boundary.</td></tr>
+        <tr><td class="sys-name">AlphaEvolve</td><td class="axis-cell">25.06</td><td class="axis-cell">L0</td><td class="axis-cell">G-code</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC2</td><td class="axis-cell">DC2</td><td class="axis-cell">LC2</td><td class="r-cell">R3</td><td class="key-note">Protocolized program database with objective-scored code gates.</td></tr>
+        <tr><td class="sys-name">AIRA-dojo</td><td class="axis-cell">25.07</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">LC2</td><td class="r-cell">R4</td><td class="key-note">Iterative ML loop drafts, improves, debugs, executes notebooks, evaluates CV, and writes submissions; no manuscript workflow.</td></tr>
+        <tr><td class="sys-name">SWE-Debate</td><td class="axis-cell">25.07</td><td class="axis-cell">L1</td><td class="axis-cell">G-code</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC1-SE</td><td class="axis-cell">DC1-SE</td><td class="axis-cell">LC2</td><td class="r-cell">R3</td><td class="key-note">Debate and MCTS around software patches; code gate is local.</td></tr>
+        <tr><td class="sys-name">MetaAgent</td><td class="axis-cell">25.08</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R3</td><td class="key-note">Tool-interaction history feeds a persistent vector memory while reflection is injected into context separately; no enforceable gate or parallel research-branch evidence.</td></tr>
+        <tr><td class="sys-name">CMA</td><td class="axis-cell">25.08</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R2</td><td class="key-note">Asynchronous modules and shared memory, but no qualifying research-review loop or verifier gate.</td></tr>
+        <tr><td class="sys-name">AInstein</td><td class="axis-cell">25.10</td><td class="axis-cell">L2</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A1</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC1</td><td class="r-cell">R4</td><td class="key-note">Generalizer and solver critique loops support pre-experimental problem-solution evidence.</td></tr>
+        <tr><td class="sys-name">Kosmos</td><td class="axis-cell">25.11</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC2</td><td class="axis-cell">LC3</td><td class="r-cell">R4</td><td class="key-note">Sentence-to-evidence links help audit, but synthesis and interpretation remain weaker.</td></tr>
+        <tr><td class="sys-name">EviBound</td><td class="axis-cell">25.11</td><td class="axis-cell">L0</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">LC0</td><td class="r-cell">R4</td><td class="key-note">Reusable verifier infrastructure for run contracts.</td></tr>
+        <tr><td class="sys-name">AgentEvolver</td><td class="axis-cell">25.11</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R3</td><td class="key-note">Agent-controller evolution over held-out tool-use tasks.</td></tr>
+        <tr><td class="sys-name">OmniScientist</td><td class="axis-cell">25.11</td><td class="axis-cell">L2</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC3</td><td class="r-cell">R2</td><td class="key-note">AI/CS case-study evidence supports a broader ideation, experiment, writing, and review workflow claim.</td></tr>
+        <tr><td class="sys-name">CFD-copilot</td><td class="axis-cell">25.12</td><td class="axis-cell">L0</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A1</td><td class="axis-cell">DC1-CFD</td><td class="axis-cell">DC1-CFD</td><td class="axis-cell">LC2</td><td class="r-cell">R4</td><td class="key-note">Simulation automation with CFD readouts.</td></tr>
+        <tr><td class="sys-name">PhysMaster</td><td class="axis-cell">25.12</td><td class="axis-cell">L1</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-physics</td><td class="axis-cell">DC1-physics</td><td class="axis-cell">LC2</td><td class="r-cell">R2</td><td class="key-note">Literature retrieval and MCTS trajectories over physics cases with simulator checks.</td></tr>
+        <tr><td class="sys-name">ASG-SI</td><td class="axis-cell">25.12</td><td class="axis-cell">L0</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R2</td><td class="key-note">Audited skill-graph proposal; O/A and run-gate evidence are architectural claims.</td></tr>
+        <tr><td class="sys-name">ML-Master 2.0</td><td class="axis-cell">26.01</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">LC2</td><td class="r-cell">R2</td><td class="key-note">MLE-Bench medal loop with hierarchical cognitive cache.</td></tr>
+        <tr><td class="sys-name">InternAgent-1.5</td><td class="axis-cell">26.02</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC2</td><td class="axis-cell">LC2</td><td class="r-cell">R2</td><td class="key-note">Generation&ndash;verification&ndash;evolution over long-horizon scientific tasks; public evidence is claim-level.</td></tr>
+        <tr><td class="sys-name">ClawdLab</td><td class="axis-cell">26.02</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O0</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R2</td><td class="key-note">Governance and harness proposal with PI oversight; public evidence is architectural, not a demonstrated gate.</td></tr>
+        <tr><td class="sys-name">EvoScientist</td><td class="axis-cell">26.03</td><td class="axis-cell">L1</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC3</td><td class="r-cell">R2</td><td class="key-note">Idea generation, code execution, and reported full papers support LC3; venue acceptance does not by itself imply LC4.</td></tr>
+        <tr><td class="sys-name">OpenResearcher</td><td class="axis-cell">26.03</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R5</td><td class="key-note">Open search/open/find trajectories for evidence seeking.</td></tr>
+        <tr><td class="sys-name">AEGIS</td><td class="axis-cell">26.03</td><td class="axis-cell">L1</td><td class="axis-cell">G-code</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-security</td><td class="axis-cell">DC1-security</td><td class="axis-cell">LC0</td><td class="r-cell">R3</td><td class="key-note">Dialectical verifier and meta-audit over code evidence.</td></tr>
+        <tr><td class="sys-name">Bilevel Autoresearch</td><td class="axis-cell">26.03</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC2</td><td class="r-cell">R3</td><td class="key-note">Sequential trace-mediated inner loop and outer mechanism search over scoreable code tasks.</td></tr>
+        <tr><td class="sys-name">SEVerA</td><td class="axis-cell">26.03</td><td class="axis-cell">L0</td><td class="axis-cell">G-formal</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">DC1-formal</td><td class="axis-cell">LC0</td><td class="r-cell">R4</td><td class="key-note">Reusable verifier infrastructure for formal guards.</td></tr>
+        <tr><td class="sys-name">TianJi</td><td class="axis-cell">26.03</td><td class="axis-cell">L1</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A1</td><td class="axis-cell">DC1-atmos.</td><td class="axis-cell">DC1-atmos.</td><td class="axis-cell">LC2</td><td class="r-cell">R3</td><td class="key-note">Meteorology hypotheses with numerical-model checks.</td></tr>
+        <tr><td class="sys-name">Medical AI Scientist</td><td class="axis-cell">26.03</td><td class="axis-cell">L2</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-Med</td><td class="axis-cell">DC1-Med</td><td class="axis-cell">LC3</td><td class="r-cell">R3</td><td class="key-note">Multi-stage medical-AI manuscript workflow with idea gates and structured experimental records.</td></tr>
+        <tr><td class="sys-name">Multi-Agent Collab</td><td class="axis-cell">26.03</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">LC2</td><td class="r-cell">R3</td><td class="key-note">Worktree patches, global memory, preflight, training, and val-bpb acceptance form a code-optimization evidence loop.</td></tr>
+        <tr><td class="sys-name">CORAL</td><td class="axis-cell">26.04</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">DC1-CS/optim.</td><td class="axis-cell">LC2</td><td class="r-cell">R4</td><td class="key-note">Hidden graders and worktrees provide strong task gates; heartbeat reflection is same-agent control, not a reviewer loop.</td></tr>
+        <tr><td class="sys-name">AutoSOTA</td><td class="axis-cell">26.04</td><td class="axis-cell">L0</td><td class="axis-cell">G-code</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC2</td><td class="r-cell">R4</td><td class="key-note">Repository-grounded optimization with executable score improvement and run records.</td></tr>
+        <tr><td class="sys-name">A-Lab</td><td class="axis-cell">26.04</td><td class="axis-cell">L0</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-materials</td><td class="axis-cell">DC1-materials</td><td class="axis-cell">LC2</td><td class="r-cell">R3</td><td class="key-note">Robotic synthesis and characterization provide local physical readouts.</td></tr>
+        <tr><td class="sys-name">AgentV-RL</td><td class="axis-cell">26.04</td><td class="axis-cell">L1</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A1</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R4</td><td class="key-note">Forward/backward LLM verifier loop over decomposable answers; support module rather than research lifecycle.</td></tr>
+        <tr><td class="sys-name">Debate as Reward</td><td class="axis-cell">26.04</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC1</td><td class="r-cell">R4</td><td class="key-note">Ideation reward signal; narrow task verifier rather than publication gate.</td></tr>
+        <tr><td class="sys-name">Knows</td><td class="axis-cell">26.04</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O0</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R4</td><td class="key-note">YAML sidecar serializes claims, evidence, relations, and actions.</td></tr>
+        <tr><td class="sys-name">ARA</td><td class="axis-cell">26.04</td><td class="axis-cell">L0</td><td class="axis-cell">G-run</td><td class="axis-cell">O0</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R4</td><td class="key-note">Agent-native package improves reproduction and rigor audit.</td></tr>
+        <tr><td class="sys-name">SciCrafter</td><td class="axis-cell">26.04</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-embodied</td><td class="axis-cell">DC1-embodied</td><td class="axis-cell">LC2</td><td class="r-cell">R4</td><td class="key-note">MCP traces and structured knowledge books support controlled redstone discovery gates.</td></tr>
+        <tr><td class="sys-name">NORA</td><td class="axis-cell">26.05</td><td class="axis-cell">L2</td><td class="axis-cell">G-paper-partial</td><td class="axis-cell">O0</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-spatial</td><td class="axis-cell">DC1-spatial</td><td class="axis-cell">LC4</td><td class="r-cell">R3</td><td class="key-note">Target venue, paper writing, review/revise, submit-check, and submission packaging support LC4; final authority remains human.</td></tr>
+        <tr><td class="sys-name">ARIS</td><td class="axis-cell">26.05</td><td class="axis-cell">L2</td><td class="axis-cell">G-paper-partial</td><td class="axis-cell">O0</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC4</td><td class="r-cell">R4</td><td class="key-note">Skill suite spans idea discovery, experiment bridge, paper writing, rebuttal, venue templates, and pre-submission audits; evidence remains observational.</td></tr>
+        <tr><td class="sys-name">PARNESS</td><td class="axis-cell">26.05</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R3</td><td class="key-note">Declarative DAG and cross-run knowledge support coding agents; no demonstrated P2 controller or release gate.</td></tr>
+        <tr><td class="sys-name">SkillFlow</td><td class="axis-cell">26.05</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R4</td><td class="key-note">Skill-library controller trained on verifiable task rewards.</td></tr>
+        <tr><td class="sys-name">Qumus</td><td class="axis-cell">26.05</td><td class="axis-cell">L0</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-materials</td><td class="axis-cell">DC1-materials</td><td class="axis-cell">LC2</td><td class="r-cell">R3</td><td class="key-note">Sequential robotic synthesis and device evidence support local physical claims.</td></tr>
+        <tr><td class="sys-name">AutoResearchClaw</td><td class="axis-cell">26.05</td><td class="axis-cell">L2</td><td class="axis-cell">G-paper-partial</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC2</td><td class="axis-cell">LC3</td><td class="r-cell">R4</td><td class="key-note">Discovery-experiment-writing workflow and export checks support LC3; public evidence does not show rebuttal or camera-ready workflow.</td></tr>
+        <tr><td class="sys-name">HANA</td><td class="axis-cell">26.05</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A1</td><td class="axis-cell">DC1-networks</td><td class="axis-cell">DC1-networks</td><td class="axis-cell">LC0</td><td class="r-cell">R2</td><td class="key-note">Hierarchical network proposal without demonstrated context-separated reviewer-loop evidence.</td></tr>
+        <tr><td class="sys-name">ScientistOne</td><td class="axis-cell">26.05</td><td class="axis-cell">L2</td><td class="axis-cell">G-paper-partial</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/systems</td><td class="axis-cell">LC3</td><td class="r-cell">R4</td><td class="key-note">Chain-of-Evidence checks paper integrity, with semantic support still partial.</td></tr>
+        <tr><td class="sys-name">AutoScientists</td><td class="axis-cell">26.05</td><td class="axis-cell">L1</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC2</td><td class="axis-cell">DC2</td><td class="axis-cell">LC2</td><td class="r-cell">R4</td><td class="key-note">Shared champions, logs, forums, and dead-end records gate benchmark progress.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="matrix-legend">
+    <strong>L</strong> loop topology (L0 none &rarr; L2 nested reviewer loops) &middot;
+    <strong>G</strong> verifier gate scope (&mdash; none, then G-task / G-run / G-code / G-formal / G-paper-partial / G-paper-full by release relevance) &middot;
+    <strong>O</strong> orchestration (O0 human, O1 script, O2 agent-dispatcher) &middot;
+    <strong>P</strong> portfolio parallelism (P0 one project, P1 in-project branches, P2 multi-project) &middot;
+    <strong>A</strong> artifact substrate (A0 context, A1 loose files, A2 protocolized records) &middot;
+    <strong>DC</strong> disciplinary coverage, claimed vs. evidenced (DC1 single community, DC2 multi-domain computational, DC3 cross-disciplinary, Infra domain-agnostic) &middot;
+    <strong>LC</strong> lifecycle coverage (LC0 support module &rarr; LC4 publication cycle) &middot;
+    <strong>R</strong> Evidence Reliability Grade (R1 unsubstantiated &rarr; R5 verified).
+    No reviewed public system reaches G-paper-full, O2, or P2.
+  </p>
+</section>
+
+<div class="detail-body">
+  <h2>Part Two &mdash; Benchmarks and Verification</h2>
+  <p>The second half of the survey turns from the systems to the machinery that judges them, and it keeps two jobs separate. <strong>Evaluation</strong> asks which failures a system makes <em>visible</em> &mdash; failed execution, weak retrieval, a fragile process, or an unsupported claim &mdash; and benchmarks supply that visibility. <strong>Verification</strong> asks what can actually <em>block</em> a generated artifact from being accepted, submitted, or released. A benchmark can expose a failure without holding any release authority; a verifier can block a narrow failure without seeing the wider research process. Each is necessary, and neither substitutes for the other.</p>
+
+  <div class="figure-item">
+    <img src="../images/research/survey-evaluation.png" alt="Evaluation and verification map of benchmark targets and verifier routes">
+    <p class="figure-caption">The evaluation-and-verification map: benchmark targets (what is made visible) on one side, verifier routes (what can be blocked) on the other.</p>
+  </div>
+
+  <h3 class="subhead">What benchmarks reveal: four targets</h3>
+  <p>The survey catalogs benchmarks by the failure each one is built to expose. Every target measures one slice of the problem and hides another, and none yields a paper-level pass/fail that a gate could enforce on a generated manuscript.</p>
+  <table class="results-table">
+    <thead>
+      <tr><th>Target</th><th>What it tests &mdash; and what it cannot see</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Reconstruction</td><td>Can an agent recover an executable or paper-level artifact from a published record? Running the artifact is measurable; validating every claim attached to it is not.</td></tr>
+      <tr><td>Optimization</td><td>Research as search under an external scorer (competition metric, validation loss, task reward). Winning the scorer is not the same as making a defensible claim.</td></tr>
+      <tr><td>Process quality</td><td>Does the workflow resemble research &mdash; rigor, retrieval, synthesis &mdash; not just a local metric? But final scoring leans on model judges, inheriting the LLM-as-judge ceiling.</td></tr>
+      <tr><td>Soundness</td><td>Do plausible claims survive evidence checks? The strongest warning signal: e.g. SPOT reports ~21% recall on author-confirmed paper errors; SoundnessBench ~26% on low-soundness proposals.</td></tr>
+    </tbody>
+  </table>
+  <p>A cross-cutting <strong>validity threat</strong> sits underneath all four: contamination, leaderboard overfitting, and disclosure gaps can inflate scores even when the rest of the protocol is sound.</p>
+
+  <h3 class="subhead">What verifiers block: four routes</h3>
+  <p>Every system has a verifier slot. The survey identifies what fills it across the corpus, ordered by how much external evidence each route brings to the gate &mdash; because if generator and verifier share the same context and incentives, verification collapses into style-sensitive self-review.</p>
+  <table class="results-table">
+    <thead>
+      <tr><th>Verifier route</th><th>What it can block</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Execution &amp; deployment</td><td>Competition metrics, unit tests, exploits, deployment endpoints &mdash; the clearest antidote to circularity, but authority binds to a specific task object, not a paper's claims.</td></tr>
+      <tr><td>Formal &amp; statistical gates</td><td>Accept or reject when the target is a contract or calibrated test (run records, metric ranges, logic specifications). Strong where the target is explicit, silent otherwise.</td></tr>
+      <tr><td>Evidence bundles</td><td>Bind numbers, citations, runs, and artifacts to declared sources (chain-of-evidence, numeric registries). Reaches closest to the full paper, yet still misses causal, interpretive, novelty, and limitation claims.</td></tr>
+      <tr><td>LLM-as-judge</td><td>The most common route &mdash; and the structurally weakest. Reads text without external evidence; stacking more judges or denser rubrics does not lift the ceiling.</td></tr>
+    </tbody>
+  </table>
+  <p>The same boundary repeats across <strong>six scientific domains</strong> &mdash; biology, chemistry and materials, physics and astronomy, medicine, engineering and computer science, and quantum. In every one, a local readout (an assay, a sample, a reproduced number, a code patch, a circuit) verifies a piece, never the surrounding paper. That makes the missing instrument architectural rather than a missing prompt: a release gate would need claim extraction, independent counterevidence search, evidence attached to specific claim spans, a release-blocking rule, and human adjudication where artifacts cannot settle the dispute.</p>
+
+  <h2>Citation</h2>
+  <div class="citation-block">@article{ren2026autonomousresearch,
+  title={What's Missing in Autonomous Research? A Systematization of Systems, Benchmarks, and Verification},
+  author={Ren, Xingyu and Sun, Youran and Yi, Chugang and Zhang, Kejia and Guo, Jiaxuan and Du, Jianda and Yang, Haizhao},
+  year={2026},
+  month={June},
+  url={https://www.researchgate.net/publication/406952713}
+}</div>
+</div>
+
+<footer class="detail-footer">
+  <p>Haizhao Yang &middot; Department of Mathematics &middot; University of Maryland</p>
+</footer>
+</body>
+</html>
