@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title data-zh="GA-ICL：大语言模型中的几何感知幻觉检测 | Haizhao Yang">GA-ICL: Geometry-Aware Hallucination Detection in Large Language Models | Haizhao Yang</title>
+<link rel="stylesheet" href="../css/research.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  .detail-hero-image img {
+    max-height: 520px;
+    object-fit: contain;
+    background: #ffffff;
+    display: block;
+  }
+  .detail-body .figure-item {
+    margin: 2rem 0;
+    background: var(--rs-bg-card);
+    border: 1px solid var(--rs-border);
+    border-radius: 8px;
+    padding: 1rem 1rem 0;
+  }
+  .detail-body .figure-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 4px;
+    background: #ffffff;
+  }
+</style>
+</head>
+<body class="detail-page">
+
+<nav class="detail-nav">
+  <a href="../index.html" class="detail-back">Back to Home</a>
+</nav>
+
+<header class="detail-header">
+  <div class="detail-meta">
+    <span class="research-tag">LLM Reliability</span>
+    <span class="detail-year">2026</span>
+  </div>
+  <h1 data-zh="GA-ICL：大语言模型中的几何感知幻觉检测">Geometry-Aware Hallucination Detection in Large Language Models</h1>
+  <p class="detail-authors">Bodla Krishna Vamshi, Rohan Bhatnagar, Haizhao Yang</p>
+  <div class="detail-links">
+    <a href="https://arxiv.org/abs/2601.06196" class="detail-link" target="_blank" rel="noopener">arXiv</a>
+    <a href="https://arxiv.org/pdf/2601.06196" class="detail-link" target="_blank" rel="noopener">PDF</a>
+    <a href="https://scirate.com/?date=2026-01-19&page=107&range=7" class="detail-link" target="_blank" rel="noopener">SciRate</a>
+  </div>
+</header>
+
+<div class="detail-hero-image">
+  <img src="../images/research/ga-icl-bar-plots.webp" alt="GA-ICL accuracy comparison bar plots">
+  <p class="figure-caption">GA-ICL compares geometry-aware in-context demonstrations against standard selection baselines.</p>
+</div>
+
+<div class="detail-body">
+  <h2>The Headline</h2>
+  <p data-zh="GA-ICL 把幻觉检测变成一个几何问题。系统冻结 LLM，在它的表示空间上学习一个轻量检索几何，再选择更能揭示事实一致性的 demonstrations。"><strong>GA-ICL turns hallucination detection into a geometry problem.</strong> The system keeps the LLM frozen, learns a light retrieval geometry on top of its representations, and chooses demonstrations that better reveal factual consistency.</p>
+  <p data-zh="它把 in-context learning 从普通相似度检索升级为有目标的示例选择。模型看到的 examples 来自局部流形结构和类别原型，因此 prompt 一开始就带着更好的证据。">It upgrades in-context learning from plain similarity search to targeted example selection. The examples come from local manifold structure and class prototypes, so the prompt starts with better evidence.</p>
+
+  <h2>Why Geometry Matters</h2>
+  <p data-zh="语义相似度只是事实一致性的粗糙代理。GA-ICL 学习一个压缩空间，让与幻觉相关的差异更容易分开。最明显的收益出现在 dialogue 和 summarization 上，因为这些任务里的事实错误依赖长上下文，单个词面线索太弱。">Semantic similarity is only a rough proxy for factual consistency. GA-ICL learns a compressed space where hallucination-relevant distinctions are easier to separate. The strongest gains appear in dialogue and summarization, where factual errors depend on long context and a single lexical clue is too weak.</p>
+  <p data-zh="这个思路很干净：大模型本身保持冻结，外层只学习一个小的 retrieval module。对科学应用来说，这意味着可以利用冻结模型里的几何结构，避免为每个新任务重新训练整个 LLM。">The idea is clean: the large model stays frozen, and a small retrieval module learns around it. For scientific applications, that means using the geometry already present inside frozen models and avoiding full LLM retraining for every new task.</p>
+
+  <h2>Result Snapshot</h2>
+  <p data-zh="在 FEVER 和 HaluEval 上，GA-ICL 在多数测试设置中超过标准 ICL 检索基线。它在 temperature 扰动和模型变化下保持稳定，扩展到 Phi-14B 和 Qwen3-32B 后仍然有效。">On FEVER and HaluEval, GA-ICL beats standard ICL retrieval baselines in most tested settings. It stays stable under temperature perturbations and model changes, and extended tests on Phi-14B and Qwen3-32B show that the geometry scales to larger LLMs.</p>
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Axis</th>
+        <th>Takeaway</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Core method</td>
+        <td>Geometry-aware ICL demonstration selection</td>
+      </tr>
+      <tr>
+        <td>Model update</td>
+        <td>Frozen LLM, small retrieval module</td>
+      </tr>
+      <tr>
+        <td>Benchmarks</td>
+        <td>FEVER and HaluEval</td>
+      </tr>
+      <tr>
+        <td>Strongest tasks</td>
+        <td>Dialogue and summarization</td>
+      </tr>
+      <tr>
+        <td>Large-model checks</td>
+        <td>Phi-14B and Qwen3-32B</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="figure-item">
+    <img src="../images/research/ga-icl-dialogue-results.webp" alt="GA-ICL dialogue accuracy comparison">
+    <p class="figure-caption">Dialogue results show where geometry-aware demonstrations separate factual consistency most clearly.</p>
+  </div>
+
+  <h2>Citation</h2>
+  <div class="citation-block">@misc{vamshi2026geometry,
+      title={Geometry-Aware Hallucination Detection in Large Language Models},
+      author={B. Vamshi and Rohan Bhatnagar and Haizhao Yang},
+      year={2026},
+      eprint={2601.06196},
+      archivePrefix={arXiv},
+      url={https://arxiv.org/abs/2601.06196},
+}</div>
+</div>
+
+<footer class="detail-footer">
+  <p>Haizhao Yang &middot; Department of Mathematics &middot; University of Maryland</p>
+</footer>
+<script src="../js/bilingual.js"></script>
+</body>
+</html>

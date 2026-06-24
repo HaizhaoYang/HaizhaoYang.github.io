@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title data-zh="DRIFT：用表征不一致性检测事实真实性 | Haizhao Yang">DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness | Haizhao Yang</title>
+<link rel="stylesheet" href="../css/research.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  .detail-hero-image img {
+    max-height: 420px;
+    object-fit: contain;
+    background: #ffffff;
+    display: block;
+  }
+  .detail-body .figure-item {
+    margin: 2rem 0;
+    background: var(--rs-bg-card);
+    border: 1px solid var(--rs-border);
+    border-radius: 8px;
+    padding: 1rem 1rem 0;
+  }
+  .detail-body .figure-item img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 4px;
+    background: #ffffff;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    margin: 1.5rem 0 2rem;
+    border: 1px solid var(--rs-border);
+    border-radius: 8px;
+    background: var(--rs-bg-card);
+  }
+  .table-scroll .results-table {
+    min-width: 760px;
+    margin: 0;
+  }
+  .sampling-need { color: #f87171; }
+  .sampling-no { color: #34d399; }
+  .method-strong { color: var(--rs-text); font-weight: 700; }
+  .ood-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .ood-grid .figure-item { margin: 0; }
+  @media (max-width: 768px) {
+    .ood-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="detail-page">
+
+<nav class="detail-nav">
+  <a href="../index.html" class="detail-back">Back to Home</a>
+</nav>
+
+<header class="detail-header">
+  <div class="detail-meta">
+    <span class="research-tag">LLM Reliability</span>
+    <span class="detail-year">2026</span>
+  </div>
+  <h1 data-zh="DRIFT：用表征不一致性检测事实真实性">DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness</h1>
+  <p class="detail-authors">Rohan Bhatnagar, Youran Sun, Chi Zhang, Yixin Wen, Haizhao Yang</p>
+  <div class="detail-links">
+    <a href="https://arxiv.org/abs/2601.14210" class="detail-link" target="_blank" rel="noopener">arXiv</a>
+    <a href="https://arxiv.org/pdf/2601.14210" class="detail-link" target="_blank" rel="noopener">PDF</a>
+    <a href="https://www.researchgate.net/publication/400239250_DRIFT_Detecting_Representational_Inconsistencies_for_Factual_Truthfulness" class="detail-link" target="_blank" rel="noopener">ResearchGate</a>
+    <a href="https://dblp.dagstuhl.de/rec/journals/corr/abs-2601-14210.html" class="detail-link" target="_blank" rel="noopener">DBLP</a>
+    <a href="https://scirate.com/?date=2026-01-22&page=26&range=7" class="detail-link" target="_blank" rel="noopener">SciRate</a>
+  </div>
+</header>
+
+<div class="detail-hero-image">
+  <img src="../images/research/drift-pipeline.webp" alt="DRIFT hallucination routing pipeline">
+  <p class="figure-caption">DRIFT checks hallucination risk while generation is already running, then routes uncertain queries to stronger verification.</p>
+</div>
+
+<div class="detail-body">
+  <h2>The Headline</h2>
+  <p data-zh="DRIFT 是一个面向 LLM 的内部测谎仪，在模型开口之前读取风险信号。它观察中间层 hidden states，在生成答案的同时预测幻觉风险。"><strong>DRIFT is a lie detector for LLMs that reads the model before it speaks.</strong> It watches intermediate hidden states and predicts hallucination risk while the answer is already being generated.</p>
+  <p data-zh="这个 detector 的额外计算量低于生成一个 token 所需计算的 0.1%。这让它足够快，可以直接变成 router：有把握的问题立刻返回，高风险问题交给更强的验证路径。">The detector costs less than <strong>0.1%</strong> of the computation needed to generate one token. That makes it fast enough for a router: confident questions return immediately, and risky questions go to a stronger verification path.</p>
+
+  <h2>Inside The Model</h2>
+  <p data-zh="最终层表征已经被压向下一个 token。DRIFT 往更早的中间层看，那里仍保留更丰富的置信信号。论文把这个信号做成轻量 probe，并让 probe 和答案生成并行运行。">Final-layer representations have already been squeezed toward the next token. DRIFT looks earlier, where the model still carries richer confidence signals. The paper turns that signal into a lightweight probe and lets the probe run in parallel with generation.</p>
+  <p data-zh="这个设计直接改变了幻觉检测的时机。答案还没写完时，router 已经能判断默认模型是否值得信任。">The design changes the timing of hallucination detection. Before the answer is finished, the router can already decide whether the default model deserves trust.</p>
+
+  <h2>Result Snapshot</h2>
+  <p data-zh="主结果很清楚。DRIFT 在四个 QA 基准和三个模型家族上测试，在 12 个设置中的 10 个达到 SOTA AUROC，最高提升 13 点，并且跨数据集迁移仍然稳定。">The main result is clear. Across four QA benchmarks and three model families, DRIFT reaches SOTA AUROC in 10 of 12 settings, posts gains up to 13 points, and keeps working under dataset shift.</p>
+  <table class="results-table">
+    <thead>
+      <tr>
+        <th>Signal</th>
+        <th>Headline number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Compute overhead</td>
+        <td>&lt; 0.1% of one-token generation cost</td>
+      </tr>
+      <tr>
+        <td>Benchmarks</td>
+        <td>4 QA benchmarks</td>
+      </tr>
+      <tr>
+        <td>Model families</td>
+        <td>3 LLM families</td>
+      </tr>
+      <tr>
+        <td>SOTA reach</td>
+        <td>10 of 12 settings</td>
+      </tr>
+      <tr>
+        <td>Largest gain</td>
+        <td>Up to 13 AUROC points</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="ood-grid">
+    <div class="figure-item">
+      <img src="../images/research/drift-ood-results.webp" alt="DRIFT out-of-distribution hallucination detection results">
+      <p class="figure-caption">Out-of-distribution results on general QA benchmarks.</p>
+    </div>
+    <div class="figure-item">
+      <img src="../images/research/drift-ood-results-qa.webp" alt="DRIFT out-of-distribution QA hallucination detection results">
+      <p class="figure-caption">Out-of-distribution results on QA transfer settings.</p>
+    </div>
+  </div>
+
+  <h2>Method Comparison</h2>
+  <p class="figure-caption">Summary of hallucination detection methods.</p>
+  <div class="table-scroll">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Sampling</th>
+          <th>Features Used</th>
+          <th>Q/A Features Used</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Perplexity</td>
+          <td><span class="sampling-no">No Need</span></td>
+          <td>Output Logits</td>
+          <td>Answer</td>
+        </tr>
+        <tr>
+          <td>Semantic Entropy</td>
+          <td><span class="sampling-need">Need</span></td>
+          <td>Output</td>
+          <td>Answer</td>
+        </tr>
+        <tr>
+          <td>Lexical Similarity</td>
+          <td><span class="sampling-need">Need</span></td>
+          <td>Output</td>
+          <td>Answer</td>
+        </tr>
+        <tr>
+          <td>SelfcheckGPT</td>
+          <td><span class="sampling-need">Need</span></td>
+          <td>Output</td>
+          <td>Answer</td>
+        </tr>
+        <tr>
+          <td>EigenScore</td>
+          <td><span class="sampling-need">Need</span></td>
+          <td>Middle Hidden States</td>
+          <td>Answer</td>
+        </tr>
+        <tr>
+          <td>P(I Know)</td>
+          <td><span class="sampling-no">No Need</span></td>
+          <td>Last Hidden State</td>
+          <td>Question</td>
+        </tr>
+        <tr>
+          <td>True Direction</td>
+          <td><span class="sampling-no">No Need</span></td>
+          <td>Last Hidden State</td>
+          <td>Answer</td>
+        </tr>
+        <tr>
+          <td>HaloScope</td>
+          <td><span class="sampling-no">No Need</span></td>
+          <td>Middle Hidden States</td>
+          <td>Answer</td>
+        </tr>
+        <tr>
+          <td>HARP</td>
+          <td><span class="sampling-no">No Need</span></td>
+          <td>Last Hidden State</td>
+          <td>Answer</td>
+        </tr>
+        <tr>
+          <td class="method-strong">Ours</td>
+          <td><span class="sampling-no">No Need</span></td>
+          <td>Middle Hidden States</td>
+          <td>Question/Answer</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Citation</h2>
+  <div class="citation-block">@misc{bhatnagar2026drift,
+      title={DRIFT: Detecting Representational Inconsistencies for Factual Truthfulness},
+      author={Rohan Bhatnagar and Youran Sun and Chi Zhang and Yixin Wen and Haizhao Yang},
+      year={2026},
+      eprint={2601.14210},
+      archivePrefix={arXiv},
+      url={https://arxiv.org/abs/2601.14210},
+}</div>
+</div>
+
+<footer class="detail-footer">
+  <p>Haizhao Yang &middot; Department of Mathematics &middot; University of Maryland</p>
+</footer>
+<script src="../js/bilingual.js"></script>
+</body>
+</html>
