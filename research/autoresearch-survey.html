@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>What's Missing in Autonomous Research? — Haizhao Yang</title>
+<title data-zh="自主研究缺了什么？| Haizhao Yang">What's Missing in Autonomous Research? | Haizhao Yang</title>
 <link rel="stylesheet" href="../css/research.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -129,10 +129,10 @@
     <span class="research-tag">Survey</span>
     <span class="detail-year">2026</span>
   </div>
-  <h1>What's Missing in Autonomous Research? A Systematization of Systems, Benchmarks, and Verification</h1>
+  <h1 data-zh="自主研究缺了什么？系统、基准与验证的一张全景图">What's Missing in Autonomous Research? A Systematization of Systems, Benchmarks, and Verification</h1>
   <p class="detail-authors">Xingyu Ren, Youran Sun, Chugang Yi, Kejia Zhang, Jiaxuan Guo, Jianda Du, Haizhao Yang</p>
   <div class="detail-links">
-    <a href="https://www.researchgate.net/publication/406952713_What's_Missing_in_Autonomous_Research_A_Systematization_of_SystemsBenchmarks_and_Verification" class="detail-link">PDF</a>
+    <a href="https://www.researchgate.net/publication/406952713_What's_Missing_in_Autonomous_Research_A_Systematization_of_SystemsBenchmarks_and_Verification" class="detail-link" target="_blank">PDF</a>
   </div>
 </header>
 
@@ -142,8 +142,8 @@
 
 <div class="detail-body">
   <h2>Overview</h2>
-  <p>In barely two years, autonomous research has jumped from isolated research assistants to systems that automate large stretches of the scientific workflow &mdash; drafting papers, searching over candidates, running code, and connecting to wet-lab and simulator readouts. But the same systems are described as AI scientists, research agents, deep-research agents, or agentic-science platforms, report wildly different kinds of evidence, and are scored on benchmarks that rarely line up. The field has outgrown its own map.</p>
-  <p>This survey draws that map. It systematizes public work on autonomous research through <strong>June 2026</strong>, and its organizing move is a single distinction the field usually treats as a footnote: it separates what a system can <strong>produce</strong> from what it can <strong>defend</strong>. Read along that axis, most systems can generate a research artifact &mdash; yet almost none can block a weak result before release. The survey makes that <strong>missing release architecture</strong> explicit, system by system.</p>
+  <p data-zh="短短两年，自主研究已经从孤立的研究助手跃迁到能自动化科学工作流大段流程的系统：写论文、搜索候选方案、运行代码，并连接湿实验室和模拟器读数。但这些系统同时被称为 AI scientists、research agents、deep-research agents 或 agentic-science platforms，报告的证据类型差异巨大，使用的基准也很少对齐。这个领域已经长得比自己的地图更大。">In barely two years, autonomous research has jumped from isolated research assistants to systems that automate large stretches of the scientific workflow,drafting papers, searching over candidates, running code, and connecting to wet-lab and simulator readouts. But the same systems are described as AI scientists, research agents, deep-research agents, or agentic-science platforms, report wildly different kinds of evidence, and are scored on benchmarks that rarely line up. The field has outgrown its own map.</p>
+  <p data-zh="这篇综述画出这张地图。它系统整理截至 2026 年 6 月的公开自主研究工作，核心动作是拆开一个常被当作脚注的区别：系统能 produce 什么，以及能 defend 什么。沿这条轴看，大多数系统能生成研究产物，但几乎没有系统能在发布前挡住薄弱结果。这篇综述把缺失的 release architecture 明确呈现到每个系统层面。">This survey draws that map. It systematizes public work on autonomous research through <strong>June 2026</strong>, and its organizing move is a single distinction the field usually treats as a footnote: it separates what a system can <strong>produce</strong> from what it can <strong>defend</strong>. Read along that axis, most systems can generate a research artifact,yet almost none can block a weak result before release. The survey makes that <strong>missing release architecture</strong> explicit, system by system.</p>
 
   <div class="figure-item">
     <img src="../images/research/survey-timeline.png" alt="Timeline of autonomous-research systems and evaluation signals">
@@ -151,8 +151,8 @@
   </div>
 
   <h2>Key Contributions</h2>
-  <p>The survey is built in two halves that answer two different questions. <strong>Part one</strong> maps the <em>systems</em> &mdash; what each one builds and how far it can defend it. <strong>Part two</strong> maps the <em>evaluation and verification</em> machinery around them &mdash; what benchmarks can make visible and what verifiers can actually block.</p>
-  <p>For part one, the survey hand-codes <strong>56 autonomous-research systems</strong> along <strong>seven axes</strong>, each prying apart a capability that end-to-end "AI Scientist" claims tend to fuse into one:</p>
+  <p data-zh="这篇综述分成两半，回答两个不同问题。第一部分绘制 systems：每个系统构建什么，以及能为它辩护到什么程度。第二部分绘制周围的 evaluation and verification 机制：基准能让什么变得可见，验证器又能真正阻止什么。">The survey is built in two halves that answer two different questions. <strong>Part one</strong> maps the <em>systems</em>,what each one builds and how far it can defend it. <strong>Part two</strong> maps the <em>evaluation and verification</em> machinery around them,what benchmarks can make visible and what verifiers can actually block.</p>
+  <p data-zh="第一部分把 56 个自主研究系统手工编码到七条轴上，每条轴都拆开一种端到端 AI Scientist 叙事容易混在一起的能力：">For part one, the survey hand-codes <strong>56 autonomous-research systems</strong> along <strong>seven axes</strong>, each prying apart a capability that end-to-end "AI Scientist" claims tend to fuse into one:</p>
   <table class="results-table">
     <thead>
       <tr>
@@ -170,13 +170,13 @@
       <tr><td>Lifecycle coverage (LC)</td><td>How far a thread reaches, from support module to publication cycle</td></tr>
     </tbody>
   </table>
-  <p>Every system also carries an <strong>Evidence Reliability Grade</strong> (R1&ndash;R5) that records the strength of <em>public</em> evidence rather than capability &mdash; an infrastructure component with strong artifacts can outrank a flashy end-to-end system whose claims are thinly substantiated.</p>
-  <p>Read together, the axes draw a sharp line. Production has scaled; <strong>defensibility has not</strong>. No reviewed public system reaches a full-manuscript release gate (<strong>G-paper-full</strong>), agent-dispatcher orchestration (<strong>O2</strong>), a multi-project portfolio (<strong>P2</strong>), or cross-disciplinary validation in the DC-Evidence column &mdash; and only <strong>four</strong> gate even selected paper-level claims. The result is a field map that locates each system by both what it builds and what it can stand behind.</p>
+  <p data-zh="每个系统还带有 Evidence Reliability Grade (R1 到 R5)，记录的是公开证据强度而非能力本身。一个有强产物的基础设施组件，可以高于一个声势很大的端到端系统，只要后者的公开证据很薄。">Every system also carries an <strong>Evidence Reliability Grade</strong> (R1 toR5) that records the strength of <em>public</em> evidence rather than capability,an infrastructure component with strong artifacts can outrank a flashy end-to-end system whose claims are thinly substantiated.</p>
+  <p data-zh="合起来看，这些轴画出一条锋利分界线。生产能力已经扩张，可辩护性还没有。被审查的公开系统中，没有一个达到完整手稿发布门 (G-paper-full)、agent-dispatcher 编排 (O2)、多项目组合 (P2)，或 DC-Evidence 列中的跨学科验证；只有四个系统甚至对选定的论文级主张设置了门控。结果是一张同时定位能构建什么和能为之站住脚什么的领域地图。">Read together, the axes draw a sharp line. Production has scaled; <strong>defensibility has not</strong>. No reviewed public system reaches a full-manuscript release gate (<strong>G-paper-full</strong>), agent-dispatcher orchestration (<strong>O2</strong>), a multi-project portfolio (<strong>P2</strong>), or cross-disciplinary validation in the DC-Evidence column,and only <strong>four</strong> gate even selected paper-level claims. The result is a field map that locates each system by both what it builds and what it can stand behind.</p>
 </div>
 
 <section class="system-matrix-section">
-  <h2>Part One &mdash; The System Coding Matrix &middot; All 56 Systems</h2>
-  <p class="matrix-intro">This is the core of the survey: every reviewed autonomous-research system, hand-coded on all seven axes plus its Evidence Reliability Grade (R) from public evidence only. Where a paper claimed a capability without inspectable mechanism, artifact, or trace evidence, the lower label was assigned and the claim&ndash;evidence gap recorded. Sorted by first public date.</p>
+  <h2>Part One,The System Coding Matrix &middot; All 56 Systems</h2>
+  <p class="matrix-intro" data-zh="这是综述的核心：每个被审查的自主研究系统，都基于公开证据被手工编码到七条轴和 Evidence Reliability Grade (R) 上。如果一篇论文声称某项能力，但缺少可检查机制、产物或轨迹证据，就分配较低标签，并记录 claim-to-evidence gap。按首次公开日期排序。">This is the core of the survey: every reviewed autonomous-research system, hand-coded on all seven axes plus its Evidence Reliability Grade (R) from public evidence only. Where a paper claimed a capability without inspectable mechanism, artifact, or trace evidence, the lower label was assigned and the claim toevidence gap recorded. Sorted by first public date.</p>
   <div class="system-matrix-scroll">
     <table class="system-matrix">
       <thead>
@@ -225,7 +225,7 @@
         <tr><td class="sys-name">PhysMaster</td><td class="axis-cell">25.12</td><td class="axis-cell">L1</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-physics</td><td class="axis-cell">DC1-physics</td><td class="axis-cell">LC2</td><td class="r-cell">R2</td><td class="key-note">Literature retrieval and MCTS trajectories over physics cases with simulator checks.</td></tr>
         <tr><td class="sys-name">ASG-SI</td><td class="axis-cell">25.12</td><td class="axis-cell">L0</td><td class="axis-cell">G-run</td><td class="axis-cell">O1</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R2</td><td class="key-note">Audited skill-graph proposal; O/A and run-gate evidence are architectural claims.</td></tr>
         <tr><td class="sys-name">ML-Master 2.0</td><td class="axis-cell">26.01</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">DC1-ML</td><td class="axis-cell">LC2</td><td class="r-cell">R2</td><td class="key-note">MLE-Bench medal loop with hierarchical cognitive cache.</td></tr>
-        <tr><td class="sys-name">InternAgent-1.5</td><td class="axis-cell">26.02</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC2</td><td class="axis-cell">LC2</td><td class="r-cell">R2</td><td class="key-note">Generation&ndash;verification&ndash;evolution over long-horizon scientific tasks; public evidence is claim-level.</td></tr>
+        <tr><td class="sys-name">InternAgent-1.5</td><td class="axis-cell">26.02</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC2</td><td class="axis-cell">LC2</td><td class="r-cell">R2</td><td class="key-note">Generation toverification toevolution over long-horizon scientific tasks; public evidence is claim-level.</td></tr>
         <tr><td class="sys-name">ClawdLab</td><td class="axis-cell">26.02</td><td class="axis-cell">L0</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O0</td><td class="axis-cell">P0</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R2</td><td class="key-note">Governance and harness proposal with PI oversight; public evidence is architectural, not a demonstrated gate.</td></tr>
         <tr><td class="sys-name">EvoScientist</td><td class="axis-cell">26.03</td><td class="axis-cell">L1</td><td class="axis-cell">&mdash;</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">DC3</td><td class="axis-cell">DC1-CS/ML</td><td class="axis-cell">LC3</td><td class="r-cell">R2</td><td class="key-note">Idea generation, code execution, and reported full papers support LC3; venue acceptance does not by itself imply LC4.</td></tr>
         <tr><td class="sys-name">OpenResearcher</td><td class="axis-cell">26.03</td><td class="axis-cell">L0</td><td class="axis-cell">G-task</td><td class="axis-cell">O1</td><td class="axis-cell">P1</td><td class="axis-cell">A2</td><td class="axis-cell">Infra</td><td class="axis-cell">Infra</td><td class="axis-cell">LC0</td><td class="r-cell">R5</td><td class="key-note">Open search/open/find trajectories for evidence seeking.</td></tr>
@@ -269,8 +269,8 @@
 </section>
 
 <div class="detail-body">
-  <h2>Part Two &mdash; Benchmarks and Verification</h2>
-  <p>The second half of the survey turns from the systems to the machinery that judges them, and it keeps two jobs separate. <strong>Evaluation</strong> asks which failures a system makes <em>visible</em> &mdash; failed execution, weak retrieval, a fragile process, or an unsupported claim &mdash; and benchmarks supply that visibility. <strong>Verification</strong> asks what can actually <em>block</em> a generated artifact from being accepted, submitted, or released. A benchmark can expose a failure without holding any release authority; a verifier can block a narrow failure without seeing the wider research process. Each is necessary, and neither substitutes for the other.</p>
+  <h2>Part Two,Benchmarks and Verification</h2>
+  <p data-zh="综述的后半部分从系统转向评判系统的机器，并把两个任务分开。Evaluation 问的是系统让哪些失败变得可见：执行失败、检索薄弱、流程脆弱，或主张缺少支撑；基准提供这种可见性。Verification 问的是到底什么能阻止生成产物被接受、提交或发布。基准能暴露失败，却不拥有发布权；验证器能阻止狭窄失败，却不一定看见更宽的研究流程。两者都必要，也都不能互相替代。">The second half of the survey turns from the systems to the machinery that judges them, and it keeps two jobs separate. <strong>Evaluation</strong> asks which failures a system makes <em>visible</em>,failed execution, weak retrieval, a fragile process, or an unsupported claim,and benchmarks supply that visibility. <strong>Verification</strong> asks what can actually <em>block</em> a generated artifact from being accepted, submitted, or released. A benchmark can expose a failure without holding any release authority; a verifier can block a narrow failure without seeing the wider research process. Each is necessary, and neither substitutes for the other.</p>
 
   <div class="figure-item">
     <img src="../images/research/survey-evaluation.png" alt="Evaluation and verification map of benchmark targets and verifier routes">
@@ -278,34 +278,34 @@
   </div>
 
   <h3 class="subhead">What benchmarks reveal: four targets</h3>
-  <p>The survey catalogs benchmarks by the failure each one is built to expose. Every target measures one slice of the problem and hides another, and none yields a paper-level pass/fail that a gate could enforce on a generated manuscript.</p>
+  <p data-zh="综述按每个基准要暴露的失败来整理它们。每个目标都测量问题的一片，同时遮住另一片；没有一个能给生成手稿提供可执行的论文级通过或失败判定。">The survey catalogs benchmarks by the failure each one is built to expose. Every target measures one slice of the problem and hides another, and none yields a paper-level pass/fail that a gate could enforce on a generated manuscript.</p>
   <table class="results-table">
     <thead>
-      <tr><th>Target</th><th>What it tests &mdash; and what it cannot see</th></tr>
+      <tr><th>Target</th><th>What it tests,and what it cannot see</th></tr>
     </thead>
     <tbody>
       <tr><td>Reconstruction</td><td>Can an agent recover an executable or paper-level artifact from a published record? Running the artifact is measurable; validating every claim attached to it is not.</td></tr>
       <tr><td>Optimization</td><td>Research as search under an external scorer (competition metric, validation loss, task reward). Winning the scorer is not the same as making a defensible claim.</td></tr>
-      <tr><td>Process quality</td><td>Does the workflow resemble research &mdash; rigor, retrieval, synthesis &mdash; not just a local metric? But final scoring leans on model judges, inheriting the LLM-as-judge ceiling.</td></tr>
+      <tr><td>Process quality</td><td>Does the workflow resemble research,rigor, retrieval, synthesis,not just a local metric? But final scoring leans on model judges, inheriting the LLM-as-judge ceiling.</td></tr>
       <tr><td>Soundness</td><td>Do plausible claims survive evidence checks? The strongest warning signal: e.g. SPOT reports ~21% recall on author-confirmed paper errors; SoundnessBench ~26% on low-soundness proposals.</td></tr>
     </tbody>
   </table>
-  <p>A cross-cutting <strong>validity threat</strong> sits underneath all four: contamination, leaderboard overfitting, and disclosure gaps can inflate scores even when the rest of the protocol is sound.</p>
+  <p data-zh="四类目标下面都有一个横贯的 validity threat：污染、排行榜过拟合和披露缺口会抬高分数，即使协议其他部分看起来可靠。">A cross-cutting <strong>validity threat</strong> sits underneath all four: contamination, leaderboard overfitting, and disclosure gaps can inflate scores even when the rest of the protocol is sound.</p>
 
   <h3 class="subhead">What verifiers block: four routes</h3>
-  <p>Every system has a verifier slot. The survey identifies what fills it across the corpus, ordered by how much external evidence each route brings to the gate &mdash; because if generator and verifier share the same context and incentives, verification collapses into style-sensitive self-review.</p>
+  <p data-zh="每个系统都有一个 verifier slot。综述识别整个语料中这个位置由什么填充，并按每条路线给门控带来的外部证据多少排序。因为如果生成器和验证器共享同一上下文和激励，验证就会坍缩成对风格敏感的自我审查。">Every system has a verifier slot. The survey identifies what fills it across the corpus, ordered by how much external evidence each route brings to the gate,because if generator and verifier share the same context and incentives, verification collapses into style-sensitive self-review.</p>
   <table class="results-table">
     <thead>
       <tr><th>Verifier route</th><th>What it can block</th></tr>
     </thead>
     <tbody>
-      <tr><td>Execution &amp; deployment</td><td>Competition metrics, unit tests, exploits, deployment endpoints &mdash; the clearest antidote to circularity, but authority binds to a specific task object, not a paper's claims.</td></tr>
+      <tr><td>Execution &amp; deployment</td><td>Competition metrics, unit tests, exploits, deployment endpoints,the clearest antidote to circularity, but authority binds to a specific task object, not a paper's claims.</td></tr>
       <tr><td>Formal &amp; statistical gates</td><td>Accept or reject when the target is a contract or calibrated test (run records, metric ranges, logic specifications). Strong where the target is explicit, silent otherwise.</td></tr>
       <tr><td>Evidence bundles</td><td>Bind numbers, citations, runs, and artifacts to declared sources (chain-of-evidence, numeric registries). Reaches closest to the full paper, yet still misses causal, interpretive, novelty, and limitation claims.</td></tr>
-      <tr><td>LLM-as-judge</td><td>The most common route &mdash; and the structurally weakest. Reads text without external evidence; stacking more judges or denser rubrics does not lift the ceiling.</td></tr>
+      <tr><td>LLM-as-judge</td><td>The most common route,and the structurally weakest. Reads text without external evidence; stacking more judges or denser rubrics does not lift the ceiling.</td></tr>
     </tbody>
   </table>
-  <p>The same boundary repeats across <strong>six scientific domains</strong> &mdash; biology, chemistry and materials, physics and astronomy, medicine, engineering and computer science, and quantum. In every one, a local readout (an assay, a sample, a reproduced number, a code patch, a circuit) verifies a piece, never the surrounding paper. That makes the missing instrument architectural rather than a missing prompt: a release gate would need claim extraction, independent counterevidence search, evidence attached to specific claim spans, a release-blocking rule, and human adjudication where artifacts cannot settle the dispute.</p>
+  <p data-zh="同一边界在六个科学领域反复出现：生物，化学与材料，物理与天文，医学，工程与计算机科学，以及量子。每个领域里，局部读数，例如 assay、样品、复现数字、代码补丁或电路，都只能验证一块，而不是围绕它的整篇论文。这说明缺失的工具是架构性的，不是一个缺失的 prompt：发布门需要主张抽取、独立反证搜索、绑定到具体主张片段的证据、能阻止发布的规则，以及在产物无法解决争议时的人类裁决。">The same boundary repeats across <strong>six scientific domains</strong>,biology, chemistry and materials, physics and astronomy, medicine, engineering and computer science, and quantum. In every one, a local readout (an assay, a sample, a reproduced number, a code patch, a circuit) verifies a piece, never the surrounding paper. That makes the missing instrument architectural rather than a missing prompt: a release gate would need claim extraction, independent counterevidence search, evidence attached to specific claim spans, a release-blocking rule, and human adjudication where artifacts cannot settle the dispute.</p>
 
   <h2>Citation</h2>
   <div class="citation-block">@article{ren2026autonomousresearch,
@@ -320,5 +320,6 @@
 <footer class="detail-footer">
   <p>Haizhao Yang &middot; Department of Mathematics &middot; University of Maryland</p>
 </footer>
+<script src="../js/bilingual.js"></script>
 </body>
 </html>

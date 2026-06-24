@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title data-zh="AutoNumerics：PDE 的 AI 求解器工厂 | Haizhao Yang">AutoNumerics: The AI Solver Factory for PDEs | Haizhao Yang</title>
+<link rel="stylesheet" href="../css/research.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  .detail-nav { padding: 1rem 2rem 0.25rem; }
+  .detail-header { padding: 1rem 2rem 1.35rem; }
+  .detail-header h1 { font-size: 2.45rem; }
+  .detail-authors { margin-bottom: 1rem; }
+  .detail-hero-image { margin-bottom: 1.4rem; }
+  .detail-hero-image img {
+    height: auto;
+    object-fit: contain;
+    background: #ffffff;
+    display: block;
+  }
+  .detail-body { padding-bottom: 2.5rem; }
+  .detail-body h2 { margin: 1.7rem 0 0.7rem; }
+  .detail-body p { line-height: 1.58; margin-bottom: 0.9rem; }
+  .table-note {
+    color: var(--rs-text-muted) !important;
+    font-size: 0.9rem !important;
+    margin-top: -0.2rem !important;
+  }
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--rs-border);
+    border-radius: 10px;
+    background: var(--rs-bg-card);
+    margin: 1rem 0 1.3rem;
+  }
+  .results-table {
+    min-width: 860px;
+    margin: 0;
+    font-size: 0.78rem;
+  }
+  .results-table thead th {
+    padding: 0.55rem 0.65rem;
+    background: rgba(59, 130, 246, 0.14);
+  }
+  .results-table tbody td {
+    padding: 0.45rem 0.65rem;
+  }
+  .results-table .table-champ td {
+    color: #ecfeff;
+    background: rgba(52, 211, 153, 0.12);
+    font-weight: 700;
+  }
+  .results-table .dim {
+    color: var(--rs-text-muted);
+  }
+  .closing-line strong { color: var(--rs-text); }
+</style>
+</head>
+<body class="detail-page">
+
+<nav class="detail-nav">
+  <a href="../index.html" class="detail-back">Back to Home</a>
+</nav>
+
+<header class="detail-header">
+  <div class="detail-meta">
+    <span class="research-tag">AI for Science</span>
+    <span class="detail-year">2026</span>
+  </div>
+  <h1 data-zh="AutoNumerics：PDE 的 AI 求解器工厂">AutoNumerics: The AI Solver Factory for PDEs</h1>
+  <p class="detail-authors">Jianda Du, Youran Sun, Haizhao Yang</p>
+  <div class="detail-links">
+    <a href="https://arxiv.org/abs/2602.17607" class="detail-link" target="_blank" rel="noopener">arXiv</a>
+    <a href="https://arxiv.org/pdf/2602.17607" class="detail-link" target="_blank" rel="noopener">PDF</a>
+    <a href="https://github.com/Daviddjddu/Autonumerics" class="detail-link" target="_blank" rel="noopener">Code</a>
+  </div>
+</header>
+
+<div class="detail-hero-image">
+  <img src="../images/research/autonumerics-overview.jpg" alt="AutoNumerics pipeline overview">
+  <p class="figure-caption">From a PDE prompt to plans, code, verification, theory, and the final solver choice.</p>
+</div>
+
+<div class="detail-body">
+  <h2>The Headline</h2>
+  <p data-zh="AutoNumerics 是一键式 PDE 实验室。用普通科学语言给出 PDE 问题，它会启动一个 agent 团队，完成问题形式化、格式设计、求解器代码编写、失败调试、答案验证，并选出胜者。"><strong>AutoNumerics is a push button PDE lab.</strong> Give it a PDE problem in ordinary scientific language. It launches an agent team that formulates the problem, designs schemes, writes transparent solver code, debugs failures, verifies the answer, and selects the winner.</p>
+  <p data-zh="这不是神经黑箱。AutoNumerics 构建科学家可以检查、运行和改进的经典数值求解器。承诺很直接：专家级数值分析正在变成自主工作流。">This is not a neural black box. AutoNumerics builds classical numerical solvers that scientists can inspect, run, and improve. The promise is direct: expert numerical analysis becomes an autonomous workflow.</p>
+
+  <h2>Main Result Table</h2>
+  <p data-zh="论文把 AutoNumerics 放进与神经求解器和 CodePDE 同场竞技的擂台。AutoNumerics 拿下每一个 CodePDE 基准列，几何平均误差达到 9.00 × 10−9。这不是边际升级。这是 agent 驱动 PDE 求解的新级别。">The paper puts AutoNumerics in the same arena as neural solvers and CodePDE. AutoNumerics takes every CodePDE benchmark column and lands on a geometric mean of 9.00 × 10<sup>−9</sup>. That is not a marginal upgrade. It is a new league for agent driven PDE solving.</p>
+  <p class="table-note">nRMSE, lower is better. Missing baseline values are marked not reported.</p>
+  <div class="table-scroll">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Advection</th>
+          <th>Burgers</th>
+          <th>React Diff</th>
+          <th>CNS</th>
+          <th>Darcy</th>
+          <th>Geom. Mean</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>U Net</td>
+          <td>5.00 × 10<sup>−2</sup></td>
+          <td>2.20 × 10<sup>−1</sup></td>
+          <td>6.00 × 10<sup>−3</sup></td>
+          <td>3.60 × 10<sup>−1</sup></td>
+          <td class="dim">not reported</td>
+          <td class="dim">not reported</td>
+        </tr>
+        <tr>
+          <td>FNO</td>
+          <td>7.70 × 10<sup>−3</sup></td>
+          <td>7.80 × 10<sup>−3</sup></td>
+          <td>1.40 × 10<sup>−3</sup></td>
+          <td>9.50 × 10<sup>−2</sup></td>
+          <td>9.80 × 10<sup>−3</sup></td>
+          <td>9.52 × 10<sup>−3</sup></td>
+        </tr>
+        <tr>
+          <td>PINN</td>
+          <td>7.80 × 10<sup>−3</sup></td>
+          <td>8.50 × 10<sup>−1</sup></td>
+          <td>8.00 × 10<sup>−2</sup></td>
+          <td class="dim">not reported</td>
+          <td class="dim">not reported</td>
+          <td class="dim">not reported</td>
+        </tr>
+        <tr>
+          <td>ORCA</td>
+          <td>9.80 × 10<sup>−3</sup></td>
+          <td>1.20 × 10<sup>−2</sup></td>
+          <td>3.00 × 10<sup>−3</sup></td>
+          <td>6.20 × 10<sup>−2</sup></td>
+          <td class="dim">not reported</td>
+          <td class="dim">not reported</td>
+        </tr>
+        <tr>
+          <td>PDEformer</td>
+          <td>4.30 × 10<sup>−3</sup></td>
+          <td>1.46 × 10<sup>−2</sup></td>
+          <td class="dim">not reported</td>
+          <td class="dim">not reported</td>
+          <td class="dim">not reported</td>
+          <td class="dim">not reported</td>
+        </tr>
+        <tr>
+          <td>UPS</td>
+          <td>2.20 × 10<sup>−3</sup></td>
+          <td>3.73 × 10<sup>−2</sup></td>
+          <td>5.57 × 10<sup>−2</sup></td>
+          <td>4.50 × 10<sup>−3</sup></td>
+          <td class="dim">not reported</td>
+          <td class="dim">not reported</td>
+        </tr>
+        <tr>
+          <td>CodePDE</td>
+          <td>1.01 × 10<sup>−3</sup></td>
+          <td>3.15 × 10<sup>−4</sup></td>
+          <td>1.44 × 10<sup>−1</sup></td>
+          <td>1.53 × 10<sup>−2</sup></td>
+          <td>4.88 × 10<sup>−3</sup></td>
+          <td>5.08 × 10<sup>−3</sup></td>
+        </tr>
+        <tr>
+          <td>Naive Central Difference</td>
+          <td>7.05 × 10<sup>12</sup></td>
+          <td>1.64 × 10<sup>−2</sup></td>
+          <td>1.23 × 10<sup>−1</sup></td>
+          <td>3.85</td>
+          <td>2.34 × 10<sup>−1</sup></td>
+          <td class="dim">not reported</td>
+        </tr>
+        <tr class="table-champ">
+          <td>AutoNumerics</td>
+          <td>4.18 × 10<sup>−14</sup></td>
+          <td>1.79 × 10<sup>−5</sup></td>
+          <td>8.98 × 10<sup>−7</sup></td>
+          <td>1.82 × 10<sup>−4</sup></td>
+          <td>4.84 × 10<sup>−13</sup></td>
+          <td>9.00 × 10<sup>−9</sup></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Why It Matters</h2>
+  <p class="closing-line" data-zh="PDE 求解正在从手工技艺走向自主生产。AutoNumerics 在规划、编码、测试、验证、选择和交付的循环中完成繁重求解器工作。这就是从研究问题到可运行科学计算的 AI 速度路径。"><strong>PDE solving is moving from hand built craft to autonomous production.</strong> AutoNumerics does the heavy solver work in a loop of plan, code, test, verify, choose, and ship. That is the path from a research question to working scientific computation at AI speed.</p>
+
+  <h2>Citation</h2>
+  <div class="citation-block">@misc{du2026autonumerics,
+  title={AutoNumerics: An Autonomous, PDE-Agnostic Multi-Agent Pipeline for Scientific Computing},
+  author={Jianda Du and Youran Sun and Haizhao Yang},
+  year={2026},
+  eprint={2602.17607},
+  archivePrefix={arXiv},
+  url={https://arxiv.org/abs/2602.17607}
+}</div>
+</div>
+
+<footer class="detail-footer">
+  <p>Haizhao Yang &middot; Department of Mathematics &middot; University of Maryland</p>
+</footer>
+<script src="../js/bilingual.js"></script>
+</body>
+</html>

@@ -127,11 +127,8 @@ html { scroll-behavior: smooth; }
   text-decoration: none !important;
 }
 
-.research-item-title a::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--rs-radius);
+.research-item-title a:hover {
+  color: var(--rs-accent) !important;
 }
 
 .research-item-image {
@@ -212,8 +209,6 @@ html { scroll-behavior: smooth; }
   display: flex;
   gap: 0.6rem;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
 }
 
 .research-link {
@@ -238,18 +233,7 @@ html { scroll-behavior: smooth; }
 }
 
 .research-read-more {
-  position: absolute;
-  bottom: 1.25rem;
-  right: 1.25rem;
-  color: var(--rs-text-muted);
-  font-size: 1.2rem;
-  transition: color 0.3s, transform 0.3s;
-  font-style: normal;
-}
-
-.research-item:hover .research-read-more {
-  color: var(--rs-accent);
-  transform: translateX(4px);
+  display: none;
 }
 
 
