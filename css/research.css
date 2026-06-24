@@ -49,6 +49,30 @@
   color: var(--rs-accent) !important;
 }
 
+/* Desktop: lay the brand and menu out on one row to halve the nav's height.
+   Bootstrap's default wraps the menu to a second line once brand + 7 items
+   exceed the container, so force a single flex row on wide screens only. */
+@media (min-width: 1200px) {
+  .navbar-default .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .navbar-default .navbar-header { float: none; flex-shrink: 0; }
+  .navbar-default .navbar-brand { white-space: nowrap; }
+  .navbar-default .navbar-collapse {
+    float: none;
+    width: auto;
+    padding-left: 0;
+    padding-right: 0;
+    flex-shrink: 0;
+  }
+  .navbar-default .navbar-nav { float: none; margin: 0; }
+  .navbar-default .navbar-nav > li { float: left; }
+  .navbar-default .navbar-nav > li > a { letter-spacing: 0; }
+}
+
 html { scroll-behavior: smooth; }
 
 .main-home { height: 50vh !important; }
@@ -483,6 +507,11 @@ html { scroll-behavior: smooth; }
 /* ---- Responsive ---- */
 
 @media (max-width: 768px) {
+  /* Hide the navbar brand text on mobile to free up the cramped header for the menu toggle */
+  .navbar-default .navbar-brand {
+    display: none;
+  }
+
   .research-section {
     padding: 3rem 0 4rem;
   }
