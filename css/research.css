@@ -75,6 +75,11 @@
 
 html { scroll-behavior: smooth; }
 
+/* index.html only loads Inter + Space Grotesk; override the old template's
+   Lora/Merriweather defaults so nothing falls back to serif after dropping that font. */
+body { font-family: var(--rs-font-body); }
+#home h1 { font-family: var(--rs-font-display); }
+
 .main-home { height: 50vh !important; }
 .main-home .overlay { height: 50vh !important; }
 #particles-js { height: 50vh !important; }
