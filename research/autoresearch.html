@@ -28,6 +28,26 @@
     border-radius: 4px;
     background: #ffffff;
   }
+  .table-scroll {
+    overflow-x: auto;
+    margin: 1.5rem 0 2rem;
+    border: 1px solid var(--rs-border);
+    border-radius: 8px;
+    background: var(--rs-bg-card);
+  }
+  .taxonomy-table {
+    min-width: 880px;
+    margin: 0;
+    font-size: 0.92rem;
+  }
+  .taxonomy-table th,
+  .taxonomy-table td {
+    vertical-align: top;
+  }
+  .taxonomy-table td:first-child {
+    color: var(--rs-text);
+    font-weight: 500;
+  }
 </style>
 </head>
 <body class="detail-page">
@@ -111,9 +131,175 @@
   <h2>Failure Mode Taxonomy</h2>
   <p data-zh="自动化的另一面是清楚知道它的边界。Agon 的部署暴露出一整套 failure modes，我们沿严重程度、修复路径、可见性和能力位置四条轴组织它们。这张分类图划出清晰边界：一侧是对抗循环能自己发现并修复的失败，另一侧是不可见的失败，例如异常盲区、貌似合理的错误归因和过早放弃，这些没有 agent 能看见，只能由人类科学家捕捉。这就是 human navigates, AI drives 的边界。">The flip side of automation is knowing its limits. Agon's deployments expose a whole zoo of <strong>failure modes</strong>, which we organize into a four axis taxonomy along severity, fixability, visibility, and capability locus (Perception, Reasoning, Execution, Motivation). The taxonomy draws a sharp line. On one side are the failures the adversarial loops can catch and repair on their own. On the other are the "invisible" ones, such as anomaly blindness, plausible false attribution, and premature abandonment, that no agent can see and only a human scientist can catch. This is the boundary where <strong>human navigates, AI drives</strong>.</p>
 
-  <div class="figure-item">
-    <img src="../images/research/agon-figure2.png" alt="Agon failure-mode taxonomy">
-    <p class="figure-caption">The failure mode taxonomy. Every observed failure is mapped along severity, fix path, visibility, and capability locus, separating what the loops can fix from what only a human can catch.</p>
+  <p class="figure-caption">The failure mode taxonomy. Every observed failure is mapped along severity, fix path, visibility, and capability locus, separating what the loops can fix from what only a human can catch.</p>
+  <div class="table-scroll">
+    <table class="results-table taxonomy-table">
+      <thead>
+        <tr>
+          <th>Failure mode</th>
+          <th>Severity</th>
+          <th>Fix</th>
+          <th>Visibility</th>
+          <th>Locus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Anomaly blindness</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Human Watch</td>
+          <td>Invisible</td>
+          <td>Perception</td>
+        </tr>
+        <tr>
+          <td>Visual anomaly blindness</td>
+          <td>Invalid evidence</td>
+          <td>Human Watch</td>
+          <td>Invisible</td>
+          <td>Perception</td>
+        </tr>
+        <tr>
+          <td>Moving the goalposts</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Loop+Human Watch</td>
+          <td>Partially vis.</td>
+          <td>Perception</td>
+        </tr>
+        <tr>
+          <td>Plausible false attribution</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Human Watch</td>
+          <td>Invisible</td>
+          <td>Perception</td>
+        </tr>
+        <tr>
+          <td>Overexcitement and the eureka instinct</td>
+          <td>Invalid evidence</td>
+          <td>Loop+Human Case-by-Case</td>
+          <td>Visible</td>
+          <td>Reasoning</td>
+        </tr>
+        <tr>
+          <td>Obedient refinement</td>
+          <td>Direction collapse</td>
+          <td>Prompt</td>
+          <td>Invisible</td>
+          <td>Reasoning</td>
+        </tr>
+        <tr>
+          <td>Reviewer conservatism</td>
+          <td>Direction collapse</td>
+          <td>Prompt</td>
+          <td>Partially vis.</td>
+          <td>Reasoning</td>
+        </tr>
+        <tr>
+          <td>Domain intelligence deficiency</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Human Case-by-Case</td>
+          <td>Invisible</td>
+          <td>Reasoning</td>
+        </tr>
+        <tr>
+          <td>Experiment-design deficiency</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Human Rule</td>
+          <td>Invisible</td>
+          <td>Execution</td>
+        </tr>
+        <tr>
+          <td>Training-memory inertia</td>
+          <td>Invalid evidence</td>
+          <td>Human Rule</td>
+          <td>Partially vis.</td>
+          <td>Execution</td>
+        </tr>
+        <tr>
+          <td>Resource misallocation</td>
+          <td>Waste</td>
+          <td>Human Rule</td>
+          <td>Partially vis.</td>
+          <td>Execution</td>
+        </tr>
+        <tr>
+          <td>Checking too late</td>
+          <td>Waste</td>
+          <td>Prompt</td>
+          <td>Invisible</td>
+          <td>Execution</td>
+        </tr>
+        <tr>
+          <td>Implementation drift</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Loop</td>
+          <td>Partially vis.</td>
+          <td>Execution</td>
+        </tr>
+        <tr>
+          <td>Artifact clutter</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Human Rule</td>
+          <td>Partially vis.</td>
+          <td>Execution</td>
+        </tr>
+        <tr>
+          <td>Memory and context degradation</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Human Case-by-Case</td>
+          <td>Visible</td>
+          <td>Execution</td>
+        </tr>
+        <tr>
+          <td>Fluent nonsense</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Loop+Human Case-by-Case</td>
+          <td>Visible</td>
+          <td>Execution</td>
+        </tr>
+        <tr>
+          <td>Premature abandonment</td>
+          <td>Direction collapse</td>
+          <td>Loop</td>
+          <td>Visible</td>
+          <td>Motivation</td>
+        </tr>
+        <tr>
+          <td>Learned helplessness</td>
+          <td>Waste; direction collapse</td>
+          <td>Human Case-by-Case</td>
+          <td>Visible</td>
+          <td>Motivation</td>
+        </tr>
+        <tr>
+          <td>Premature convergence on writing</td>
+          <td>Direction collapse</td>
+          <td>Loop</td>
+          <td>Visible</td>
+          <td>Motivation</td>
+        </tr>
+        <tr>
+          <td>Exploration refusal</td>
+          <td>Direction collapse</td>
+          <td>Human Watch</td>
+          <td>Invisible</td>
+          <td>Motivation</td>
+        </tr>
+        <tr>
+          <td>Literature avoidance</td>
+          <td>Invalid evidence; direction collapse</td>
+          <td>Loop+Human Case-by-Case</td>
+          <td>Invisible</td>
+          <td>Motivation</td>
+        </tr>
+        <tr>
+          <td>Absence of vision and taste</td>
+          <td>Direction collapse</td>
+          <td>Human Case-by-Case</td>
+          <td>Invisible</td>
+          <td>Motivation</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <h2>Citation</h2>
