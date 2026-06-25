@@ -88,7 +88,10 @@
   .navbar-default .navbar-nav > li > a { letter-spacing: 0; }
 }
 
-html { scroll-behavior: smooth; }
+/* Restore the standard 16px root. bootstrap-lite forces html to 10px on the
+   homepage, which shrank every research-section rem to 62.5% and desynced it
+   from the detail pages (no bootstrap there, so they were already 16px). */
+html { scroll-behavior: smooth; font-size: 16px; }
 
 /* index.html loads Inter + Zilla Slab; override the old template's Lora/Merriweather
    defaults so nothing falls back to the wrong serif. */
@@ -657,7 +660,19 @@ body { font-family: var(--rs-font-body); background: var(--rs-bg); }
   }
 
   .research-item-title {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
+  }
+
+  .research-section-subtitle {
+    font-size: 1rem;
+  }
+
+  .research-authors {
+    font-size: 0.9rem !important;
+  }
+
+  .research-summary {
+    font-size: 1rem !important;
   }
 
   .research-read-more {
