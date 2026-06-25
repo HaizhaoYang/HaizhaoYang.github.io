@@ -13,6 +13,12 @@
   --rs-text-muted: #9c9387;     /* warm mid grey */
   --rs-border: #4d473f;         /* warm hairline */
   --rs-mat: #f4f1ea;            /* warm mat behind white research figures */
+  /* Prose links sit in running text, so they run brighter than the tag/button
+     accent for an easy 6:1 on charcoal (the old default browser blue was the
+     low-contrast culprit). */
+  --rs-link: #6cb4ec;
+  --rs-link-hover: #95ccf4;
+  --rs-controls-bg: rgba(40, 37, 33, 0.74); /* translucent base for the floating toggles */
   --rs-radius: 10px;
   /* Long fallback stacks: on a slow/no network the page renders instantly in
      close system fonts (a slab serif for the display face, the native UI sans
@@ -20,6 +26,36 @@
   --rs-font-display: 'Zilla Slab', 'Roboto Slab', 'Rockwell', 'Rockwell Nova', 'DejaVu Serif', Georgia, 'Times New Roman', serif;
   --rs-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
+
+/* Light theme: the same warm identity re-keyed onto paper rather than charcoal.
+   The signature blue stays the constant across both themes; it only darkens here
+   so it clears 5:1 on the warm-paper ground. Applied via html[data-theme="light"]
+   so the inline <head> script can set it before first paint (no flash). */
+html[data-theme="light"] {
+  --rs-bg: #f0eadd;             /* warm paper */
+  --rs-bg-card: #faf7f0;        /* lighter card surface */
+  --rs-bg-card-hover: #fffdf8;
+  --rs-accent: #15639f;         /* signature blue, darkened for light */
+  --rs-accent-hover: #0f4c7d;
+  --rs-accent-soft: rgba(21, 99, 159, 0.12);
+  --rs-navbar: #1577c0;         /* same blue bar across both themes */
+  --rs-text: #2b2620;           /* warm near-black */
+  --rs-text-secondary: #564e43; /* warm dark grey */
+  --rs-text-muted: #7a6f5e;     /* warm mid grey */
+  --rs-border: #e1d9c8;         /* warm hairline */
+  --rs-mat: #ffffff;            /* figures already sit on white; the card border frames them */
+  --rs-link: #135d97;
+  --rs-link-hover: #0d456f;
+  --rs-controls-bg: rgba(250, 247, 240, 0.82);
+}
+
+/* CJK-friendly font stack + looser leading when Chinese is active. Static (not
+   JS-injected) so it applies on first paint alongside the lang attribute. */
+html[lang="zh-CN"] body {
+  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', 'Noto Sans CJK SC', Arial, sans-serif;
+}
+html[lang="zh-CN"] p,
+html[lang="zh-CN"] li { line-height: 1.8; }
 
 .navbar-default {
   position: fixed;
@@ -500,6 +536,22 @@ body { font-family: var(--rs-font-body); background: var(--rs-bg); }
   font-weight: 400;
 }
 
+/* Inline prose links were unstyled and fell back to the browser's default blue
+   (near-invisible on charcoal). Give them the legible link accent + a restrained
+   underline so they read as links without color alone. */
+.detail-body a {
+  color: var(--rs-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.18s;
+}
+
+.detail-body a:hover {
+  color: var(--rs-link-hover);
+  text-decoration-thickness: 2px;
+}
+
 .results-table {
   width: 100%;
   border-collapse: collapse;
@@ -630,6 +682,101 @@ body { font-family: var(--rs-font-body); background: var(--rs-bg); }
 }
 
 
+/* ---- Floating language + theme controls (injected by js/bilingual.js) ---- */
+
+.page-controls {
+  position: fixed;
+  top: 21px;
+  right: 16px;
+  z-index: 9500; /* above the .navbar-default (9000) so it never hides behind it */
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px;
+  border-radius: 11px;
+  background: var(--rs-controls-bg);
+  border: 1px solid var(--rs-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+  backdrop-filter: blur(10px) saturate(1.15);
+}
+
+/* Detail pages are long reads with no navbar, so the controls stay fixed and
+   always reachable. The homepage instead has a hero with a navbar that slides
+   in on scroll and competes for the same corner; there the controls ride in the
+   hero header and scroll away with it, so they never collide with the bar or
+   float over the cards below. */
+body:not(.detail-page) .page-controls { position: absolute; }
+
+.lang-toggle {
+  display: flex;
+  border: 1px solid var(--rs-border);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.lang-btn {
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: var(--rs-font-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  padding: 6px 9px;
+  min-width: 32px;
+  background: transparent;
+  color: var(--rs-text-muted);
+  border: 0;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.lang-btn + .lang-btn { border-left: 1px solid var(--rs-border); }
+
+.lang-btn:hover { color: var(--rs-text); }
+
+.lang-btn[aria-pressed="true"] {
+  background: var(--rs-navbar);
+  color: #ffffff;
+}
+
+.theme-toggle {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  color: var(--rs-text-secondary);
+  border: 1px solid var(--rs-border);
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+
+.theme-toggle:hover {
+  color: var(--rs-accent);
+  border-color: var(--rs-accent);
+  background: var(--rs-accent-soft);
+}
+
+/* Show the icon for the action, not the current state: a sun in dark mode
+   (tap for light), a moon in light mode (tap for dark). */
+.theme-toggle .moon { display: none; }
+.theme-toggle .sun { display: block; }
+html[data-theme="light"] .theme-toggle .sun { display: none; }
+html[data-theme="light"] .theme-toggle .moon { display: block; }
+
+.page-controls button:focus-visible {
+  outline: 2px solid var(--rs-accent);
+  outline-offset: 2px;
+}
+
+
 /* ---- Responsive ---- */
 
 @media (max-width: 768px) {
@@ -716,7 +863,11 @@ body { font-family: var(--rs-font-body); background: var(--rs-bg); }
   .research-read-more,
   .research-link,
   .detail-link,
-  .detail-back {
+  .detail-back,
+  .detail-body a,
+  .page-controls,
+  .lang-btn,
+  .theme-toggle {
     transition: none;
   }
 
