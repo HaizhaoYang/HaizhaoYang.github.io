@@ -94,9 +94,18 @@ html { scroll-behavior: smooth; }
    defaults so nothing falls back to the wrong serif. */
 body { font-family: var(--rs-font-body); background: var(--rs-bg); }
 
-.main-home { height: 56vh !important; }
-.main-home .overlay { height: 56vh !important; }
-#particles-js { height: 56vh !important; }
+/* Hero kept compact so it doesn't dominate the page. Parallax is dropped here
+   (it is unreliable on mobile and was the main reason the hero ballooned there)
+   in favour of a predictable cover crop, with the focal point lifted to ~13% so
+   Haizhao's whole head stays in frame at this shorter height. */
+#home {
+  background-attachment: scroll !important;
+  background-position: center 13% !important;
+}
+
+.main-home { height: 44vh !important; }
+.main-home .overlay { height: 44vh !important; }
+#particles-js { height: 44vh !important; }
 
 /* Darken-to-charcoal gradient so the slab headline stays legible and the hero
    melts into the research section below instead of ending on a hard seam. */
@@ -110,11 +119,21 @@ body { font-family: var(--rs-font-body); background: var(--rs-bg); }
 #home h1 {
   font-family: var(--rs-font-display);
   font-weight: 700;
-  font-size: 64px;
+  /* px-based clamp so the root's 62.5% (10px) base can't shrink it; scales
+     smoothly from phone to desktop and always stays on one line. */
+  font-size: clamp(24px, 6vw, 64px);
   letter-spacing: 0.5px;
   color: #ffffff;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
   padding-bottom: 0;
+}
+
+/* Even shorter on phones, crop lifted a touch more, headline scaled down so it
+   never wraps down into the gradient. */
+@media (max-width: 768px) {
+  .main-home { height: 40vh !important; }
+  .main-home .overlay { height: 40vh !important; }
+  #home { background-position: center 10% !important; }
 }
 
 
