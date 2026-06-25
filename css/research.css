@@ -14,8 +14,11 @@
   --rs-border: #4d473f;         /* warm hairline */
   --rs-mat: #f4f1ea;            /* warm mat behind white research figures */
   --rs-radius: 10px;
-  --rs-font-display: 'Zilla Slab', Georgia, 'Times New Roman', serif;
-  --rs-font-body: 'Inter', sans-serif;
+  /* Long fallback stacks: on a slow/no network the page renders instantly in
+     close system fonts (a slab serif for the display face, the native UI sans
+     for body); Inter/Zilla Slab swap in later once they load. */
+  --rs-font-display: 'Zilla Slab', 'Roboto Slab', 'Rockwell', 'Rockwell Nova', 'DejaVu Serif', Georgia, 'Times New Roman', serif;
+  --rs-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .navbar-default {

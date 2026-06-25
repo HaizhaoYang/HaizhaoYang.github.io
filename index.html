@@ -25,7 +25,10 @@ http://www.tooplate.com/view/2085-neuron
 <link rel="stylesheet" href="css/research.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- Fonts load async so a slow/offline network never blocks first paint: the
+     fallback stack in research.css renders instantly, these swap in once loaded. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Zilla+Slab:wght@600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Zilla+Slab:wght@600;700&display=swap"></noscript>
 
 </head>
 <body>
@@ -89,7 +92,7 @@ http://www.tooplate.com/view/2085-neuron
 
       <article class="research-item">
         <div class="research-item-image">
-          <img src="images/research/agon-overview.webp" alt="Agon system overview">
+          <img src="images/research/agon-overview.webp" alt="Agon system overview" loading="lazy" decoding="async">
         </div>
         <div class="research-item-content">
           <span class="research-tag">Agentic AI</span>
@@ -107,7 +110,7 @@ http://www.tooplate.com/view/2085-neuron
 
       <article class="research-item">
         <div class="research-item-image">
-          <img src="images/research/survey-axes.webp" alt="Seven-axis coordinate system">
+          <img src="images/research/survey-axes.webp" alt="Seven-axis coordinate system" loading="lazy" decoding="async">
         </div>
         <div class="research-item-content">
           <span class="research-tag">Survey</span>
@@ -123,7 +126,7 @@ http://www.tooplate.com/view/2085-neuron
 
       <article class="research-item">
         <div class="research-item-image">
-          <img src="images/research/fex-trannet-poisson-pred.webp" alt="FEX TranNet prediction map">
+          <img src="images/research/fex-trannet-poisson-pred.webp" alt="FEX TranNet prediction map" loading="lazy" decoding="async">
         </div>
         <div class="research-item-content">
           <span class="research-tag">Scientific AI</span>
@@ -140,7 +143,7 @@ http://www.tooplate.com/view/2085-neuron
 
       <article class="research-item">
         <div class="research-item-image">
-          <img src="images/research/autonumerics-overview.webp" alt="AutoNumerics system overview">
+          <img src="images/research/autonumerics-overview.webp" alt="AutoNumerics system overview" loading="lazy" decoding="async">
         </div>
         <div class="research-item-content">
           <span class="research-tag">AI for Science</span>
@@ -158,7 +161,7 @@ http://www.tooplate.com/view/2085-neuron
 
       <article class="research-item">
         <div class="research-item-image">
-          <img src="images/research/drift-pipeline.webp" alt="DRIFT hallucination routing pipeline">
+          <img src="images/research/drift-pipeline.webp" alt="DRIFT hallucination routing pipeline" loading="lazy" decoding="async">
         </div>
         <div class="research-item-content">
           <span class="research-tag">LLM Reliability</span>
@@ -178,7 +181,7 @@ http://www.tooplate.com/view/2085-neuron
 
       <article class="research-item">
         <div class="research-item-image">
-          <img src="images/research/ga-icl-dialogue-results.webp" alt="GA-ICL dialogue hallucination detection results">
+          <img src="images/research/ga-icl-dialogue-results.webp" alt="GA-ICL dialogue hallucination detection results" loading="lazy" decoding="async">
         </div>
         <div class="research-item-content">
           <span class="research-tag">LLM Reliability</span>
@@ -248,6 +251,6 @@ http://www.tooplate.com/view/2085-neuron
 })();
 </script>
 
-<script src="js/bilingual.js"></script>
+<script src="js/bilingual.js" defer></script>
 </body>
 </html>
