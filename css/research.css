@@ -1,15 +1,20 @@
 :root {
-  --rs-bg: #111827;
-  --rs-bg-card: #1e293b;
-  --rs-bg-card-hover: #243044;
-  --rs-accent: #3b82f6;
-  --rs-accent-hover: #60a5fa;
-  --rs-text: #f1f5f9;
-  --rs-text-secondary: #94a3b8;
-  --rs-text-muted: #64748b;
-  --rs-border: #334155;
+  /* Palette echoes the Google Sites homepage: signature blue + warm charcoal
+     content area, re-executed with more depth and warmth than the original. */
+  --rs-bg: #2e2b27;             /* page base, warm charcoal */
+  --rs-bg-card: #3b3631;        /* card surface */
+  --rs-bg-card-hover: #453f39;  /* card hover */
+  --rs-accent: #2f8fd6;         /* link / tag text, legible on dark */
+  --rs-accent-hover: #5cabe6;
+  --rs-accent-soft: rgba(47, 143, 214, 0.14);
+  --rs-navbar: #1577c0;         /* the Google Sites blue bar */
+  --rs-text: #f6f3ee;           /* slightly warm white */
+  --rs-text-secondary: #cbc3b8; /* warm light grey */
+  --rs-text-muted: #9c9387;     /* warm mid grey */
+  --rs-border: #4d473f;         /* warm hairline */
+  --rs-mat: #f4f1ea;            /* warm mat behind white research figures */
   --rs-radius: 10px;
-  --rs-font-display: 'Space Grotesk', sans-serif;
+  --rs-font-display: 'Zilla Slab', Georgia, 'Times New Roman', serif;
   --rs-font-body: 'Inter', sans-serif;
 }
 
@@ -22,31 +27,41 @@
   transform: translateY(-100%);
   opacity: 0;
   transition: transform 0.35s ease, opacity 0.35s ease;
-  background: var(--rs-bg) !important;
-  border-bottom: 1px solid var(--rs-border) !important;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+  background: var(--rs-navbar) !important;
+  border-bottom: none !important;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.28);
+  padding: 14px 0;
 }
 
+/* Reveal on scroll past the hero (intentional behaviour, driven by the JS in index.html) */
 .navbar-default.navbar-visible {
   transform: translateY(0);
   opacity: 1;
 }
 
 .navbar-default .navbar-brand {
-  color: var(--rs-text) !important;
+  color: #ffffff !important;
   font-family: var(--rs-font-display);
-  font-size: 14px !important;
-  letter-spacing: 2px !important;
+  font-weight: 600;
+  font-size: 15px !important;
+  letter-spacing: 0.5px !important;
+  text-transform: none;
 }
 
 .navbar-default .navbar-nav li a {
-  color: var(--rs-text-secondary) !important;
+  color: rgba(255, 255, 255, 0.82) !important;
   font-family: var(--rs-font-body);
+  font-weight: 500;
 }
 
-.navbar-default .navbar-nav li a:hover,
-.navbar-default .navbar-nav .active > a {
-  color: var(--rs-accent) !important;
+/* Every nav item is an external link to Google Sites; this page is not one of
+   those tabs, so no item carries an active/selected state. */
+.navbar-default .navbar-nav li a:hover {
+  color: #ffffff !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background: #ffffff;
 }
 
 /* Desktop: lay the brand and menu out on one row to halve the nav's height.
@@ -75,14 +90,32 @@
 
 html { scroll-behavior: smooth; }
 
-/* index.html only loads Inter + Space Grotesk; override the old template's
-   Lora/Merriweather defaults so nothing falls back to serif after dropping that font. */
-body { font-family: var(--rs-font-body); }
-#home h1 { font-family: var(--rs-font-display); }
+/* index.html loads Inter + Zilla Slab; override the old template's Lora/Merriweather
+   defaults so nothing falls back to the wrong serif. */
+body { font-family: var(--rs-font-body); background: var(--rs-bg); }
 
-.main-home { height: 50vh !important; }
-.main-home .overlay { height: 50vh !important; }
-#particles-js { height: 50vh !important; }
+.main-home { height: 56vh !important; }
+.main-home .overlay { height: 56vh !important; }
+#particles-js { height: 56vh !important; }
+
+/* Darken-to-charcoal gradient so the slab headline stays legible and the hero
+   melts into the research section below instead of ending on a hard seam. */
+#home .overlay {
+  background: linear-gradient(180deg,
+    rgba(21, 24, 28, 0.42) 0%,
+    rgba(34, 31, 28, 0.66) 55%,
+    var(--rs-bg) 100%) !important;
+}
+
+#home h1 {
+  font-family: var(--rs-font-display);
+  font-weight: 700;
+  font-size: 64px;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+  padding-bottom: 0;
+}
 
 
 /* ---- Research Section (index.html) ---- */
@@ -109,7 +142,7 @@ body { font-family: var(--rs-font-body); }
   color: var(--rs-text);
   font-size: 2.75rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.3px;
   margin: 0 0 1rem;
   padding: 0;
 }
@@ -148,7 +181,7 @@ body { font-family: var(--rs-font-body); }
 .research-item:hover {
   border-color: var(--rs-accent);
   background: var(--rs-bg-card-hover);
-  box-shadow: 0 4px 24px rgba(59, 130, 246, 0.08);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.28);
 }
 
 .research-item-title a {
@@ -165,12 +198,17 @@ body { font-family: var(--rs-font-body); }
   height: 260px;
   border-radius: 8px;
   overflow: hidden;
+  /* Most research figures are charts on white. A warm mat + contain frames them
+     like a plate instead of leaving a raw white block on the charcoal card. */
+  background: var(--rs-mat);
+  border: 1px solid var(--rs-border);
+  padding: 12px;
 }
 
 .research-item-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.4s ease;
 }
 
@@ -202,7 +240,7 @@ body { font-family: var(--rs-font-body); }
   letter-spacing: 0.08em;
   line-height: 1;
   color: var(--rs-accent);
-  background: rgba(59, 130, 246, 0.1);
+  background: var(--rs-accent-soft);
   padding: 0.3rem 0.75rem;
   border-radius: 4px;
   margin-bottom: 0.85rem;
@@ -257,7 +295,7 @@ body { font-family: var(--rs-font-body); }
 
 .research-link:hover {
   border-color: var(--rs-accent);
-  background: rgba(59, 130, 246, 0.15);
+  background: var(--rs-accent-soft);
   color: var(--rs-accent-hover) !important;
 }
 
@@ -280,6 +318,18 @@ body { font-family: var(--rs-font-body); }
   color: var(--rs-text-muted) !important;
   font-size: 0.85rem !important;
   margin: 0;
+}
+
+/* Back-to-top: match the blue system instead of the old template green */
+.go-top {
+  background-color: var(--rs-navbar);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.go-top:hover {
+  background: var(--rs-accent-hover);
+  color: #ffffff;
 }
 
 
@@ -376,7 +426,7 @@ body { font-family: var(--rs-font-body); }
 
 .detail-link:hover {
   border-color: var(--rs-accent);
-  background: rgba(59, 130, 246, 0.15);
+  background: var(--rs-accent-soft);
 }
 
 .detail-hero-image {
@@ -391,7 +441,7 @@ body { font-family: var(--rs-font-body); }
   height: auto;
   border-radius: var(--rs-radius);
   object-fit: contain;
-  background: #fff;
+  background: var(--rs-mat);
 }
 
 .detail-hero-image .img-placeholder {
@@ -468,7 +518,7 @@ body { font-family: var(--rs-font-body); }
   width: 100%;
   height: auto;
   object-fit: contain;
-  background: #fff;
+  background: var(--rs-mat);
 }
 
 .figure-item .img-placeholder {
@@ -494,6 +544,52 @@ body { font-family: var(--rs-font-body); }
   color: var(--rs-text-muted);
   overflow-x: auto;
   white-space: pre-wrap;
+}
+
+/* Copy-to-clipboard affordance injected by js/citation-copy.js */
+.citation-wrap {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.citation-wrap .citation-block {
+  margin: 0;
+  padding-top: 2.9rem; /* leave room so the button never overlaps the BibTeX */
+}
+
+.citation-copy-btn {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  z-index: 1;
+  font-family: var(--rs-font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--rs-accent);
+  background: var(--rs-bg);
+  border: 1px solid var(--rs-border);
+  border-radius: 6px;
+  padding: 0.34rem 0.72rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.citation-copy-btn:hover {
+  border-color: var(--rs-accent);
+  background: var(--rs-accent-soft);
+  color: var(--rs-accent-hover);
+}
+
+.citation-copy-btn.is-copied {
+  color: #ffffff;
+  border-color: var(--rs-accent);
+  background: var(--rs-accent);
+}
+
+.citation-copy-btn:focus-visible {
+  outline: 2px solid var(--rs-accent);
+  outline-offset: 2px;
 }
 
 .detail-footer {
